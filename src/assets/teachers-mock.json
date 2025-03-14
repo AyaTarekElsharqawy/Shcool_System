@@ -1,0 +1,67 @@
+[
+    {
+      "name": "إياد أحمد",
+      "specialty": "عربي",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "خالد محمود",
+      "specialty": "إنجليزي",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "أحمد حسن",
+      "specialty": "رياضيات",
+      "status": ["خصم", "مؤجل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "محمد علي",
+      "specialty": "علوم",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "ياسر كمال",
+      "specialty": "عربي",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "إياد أحمد",
+      "specialty": "عربي",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "خالد محمود",
+      "specialty": "إنجليزي",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "أحمد حسن",
+      "specialty": "رياضيات",
+      "status": ["خصم", "مؤجل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "محمد علي",
+      "specialty": "علوم",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "ياسر كمال",
+      "specialty": "عربي",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    }
+  ]
+  
+  
+  
+  
+  

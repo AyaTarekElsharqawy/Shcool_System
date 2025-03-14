@@ -1,0 +1,18 @@
+<div class="complaints-container" *ngIf="complaints.length > 0; else noData">
+  <button class="complaints-title">الشكاوى</button>
+  <div *ngFor="let complaint of complaints" class="complaint-card">
+    <div class="complaint-header">
+      <span>{{ complaint.date }}</span>
+      <span class="parent-info">
+         {{ complaint.parentName }} / {{ complaint.studentName }} 
+        <span *ngIf="complaint.phone" class="phone-number"> ← {{ complaint.phone }}</span>
+      </span>
+    </div>
+    <p *ngIf="complaint.message && complaint.message.trim() !== ''">{{ complaint.message }}</p>
+  </div>
+</div>
+
+<!-- عرض رسالة عند عدم توفر بيانات -->
+<ng-template #noData>
+  <p class="no-data-message">لا توجد شكاوى متاحة في الوقت الحالي.</p>
+</ng-template>

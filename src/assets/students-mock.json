@@ -1,0 +1,62 @@
+[
+    {
+      "name": "إياد أحمد",
+      "studentCode": "703703",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "خالد محمود",
+      "studentCode": "703703",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "أحمد حسن",
+      "studentCode": "703703",
+      "status": ["خصم", "مؤجل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "محمد علي",
+      "studentCode": "703703",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+      "name": "ياسر كمال",
+      "studentCode": "703703",
+      "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+      "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+    },
+    {
+        "name": "إياد أحمد",
+        "studentCode": "703703",
+        "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+        "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+      },
+      {
+        "name": "خالد محمود",
+        "studentCode": "703703",
+        "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+        "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+      },
+      {
+        "name": "أحمد حسن",
+        "studentCode": "703703",
+        "status": ["خصم", "مؤجل", "سداد جزئي", "تم السداد"],
+        "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+      },
+      {
+        "name": "محمد علي",
+        "studentCode": "703703",
+        "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+        "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+      },
+      {
+        "name": "ياسر كمال",
+        "studentCode": "703703",
+        "status": ["خصم", "مؤهل", "سداد جزئي", "تم السداد"],
+        "image": "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+      }
+]

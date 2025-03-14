@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-end align-items-center mb-3">
+      <div class="search-box">
+          <input
+              type="text"
+              class="form-control search-input"
+              placeholder="البحث عن المعلم بالاسم"
+              [(ngModel)]="searchText"
+          />
+          <span class="search-icon">
+              <i class="bi bi-search"></i>
+          </span>
+      </div>
+  </div>
+
+  <table class="table table-bordered text-center">
+      <thead class="table-light">
+          <tr>
+              <th>الصورة</th>
+              <th>الاسم</th>
+              <th>التخصص</th>
+              <th>الحالة</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let teacher of filteredTeachers()">
+              <td>
+                  <img 
+                      [src]="teacher.image ? teacher.image : 'https://cdn-icons-png.flaticon.com/128/149/149071.png'" 
+                      class="teacher-img" 
+                      alt="Teacher Image"
+                  />
+              </td>
+              <td>{{ teacher.name }}</td>
+              <td>{{ teacher.specialty }}</td>
+              <td class="status-cell">
+                <span
+                    *ngFor="let status of teacher.status"
+                    class="badge"
+                    [ngClass]="getStatusClass(status, teacher)"
+                >
+                    {{ status }}
+                </span>
+            </td>
+            
+          </tr>
+      </tbody>
+  </table>
+</div>
+

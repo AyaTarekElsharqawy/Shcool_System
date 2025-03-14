@@ -1,0 +1,66 @@
+[
+    {
+      "name": "محمد علي",
+      "specialty": "رياضيات",
+      "status": ["تم السداد"],
+      "image": "assets/teacher1.jpg"
+    },
+    {
+      "name": "أحمد حسن",
+      "specialty": "علوم",
+      "status": ["سداد جزئي"],
+      "image": "assets/teacher2.jpg"
+    },
+    {
+      "name": "خالد محمود",
+      "specialty": "لغة عربية",
+      "status": ["تم السداد", "مؤجل"],
+      "image": "assets/teacher3.jpg"
+    },
+    {
+      "name": "سعيد مصطفى",
+      "specialty": "إنجليزي",
+      "status": ["خصم", "مؤجل"],
+      "image": "assets/teacher4.jpg"
+    },
+    {
+      "name": "محمود عبد الله",
+      "specialty": "فيزياء",
+      "status": ["تم السداد"],
+      "image": "assets/teacher5.jpg"
+    },
+    {
+      "name": "عمرو يوسف",
+      "specialty": "كيمياء",
+      "status": ["سداد جزئي", "خصم"],
+      "image": "assets/teacher6.jpg"
+    },
+    {
+      "name": "نور الدين أحمد",
+      "specialty": "أحياء",
+      "status": ["تم السداد"],
+      "image": "assets/teacher7.jpg"
+    },
+    {
+      "name": "ياسر كمال",
+      "specialty": "تاريخ",
+      "status": ["مؤجل"],
+      "image": "assets/teacher8.jpg"
+    },
+    {
+      "name": "إيمان علي",
+      "specialty": "جغرافيا",
+      "status": ["تم السداد", "سداد جزئي"],
+      "image": "assets/teacher9.jpg"
+    },
+    {
+      "name": "هدى محمود",
+      "specialty": "حاسب آلي",
+      "status": ["تم السداد"],
+      "image": "assets/teacher10.jpg"
+    }
+  ]
+  
+  
+  
+  
