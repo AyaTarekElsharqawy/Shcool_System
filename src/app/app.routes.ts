@@ -5,6 +5,10 @@ import { StudentComponent } from './student/student.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { ClassesListComponent } from './classes-list/classes-list.component';
 import { StudentsListComponent } from './students-list/students-list.component';
+import { SubscriptionsAndSalariesComponent } from './subscriptions-and-salaries/subscriptions-and-salaries.component';
+import { ComplaintsComponent } from './complaints/complaints.component';
+import { TeachersTableComponent } from './teachers-table/teachers-table.component';
+import { StudentsTableComponent } from './students-table/student.component';
 
 export const routes: Routes = [
     {
@@ -21,4 +25,9 @@ export const routes: Routes = [
     { path: 'teachers/:query', component: TeacherComponent }, 
     {path: 'classes',component:ClassesListComponent},
     {path: 'attendance',component:StudentsListComponent},
+    {path: 'fees',component:SubscriptionsAndSalariesComponent},
+    {path: 'Complaints',component:ComplaintsComponent},
+    {path: 'teachersFees',component:TeachersTableComponent},
+    {path: 'studentsFees',component:StudentsTableComponent},
+    
 ];

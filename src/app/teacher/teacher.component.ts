@@ -63,16 +63,19 @@ export class TeacherComponent {
       keyboard: false,
     });
   
+    modalRef.componentInstance.itemType = 'هذا المعلم'; 
+  
     modalRef.result.then(
       (confirmed) => {
         if (confirmed) {
           this.users = this.users.filter(teacher => teacher.id !== id);
-          this.filteredUsers = [...this.users]; // تحديث القائمة المصفاة
+          this.filteredUsers = [...this.users];
         }
       },
       () => {}
     );
   }
+  
 
   save(formData: any) {
     if (formData.id) {

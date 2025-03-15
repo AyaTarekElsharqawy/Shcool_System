@@ -57,20 +57,23 @@ export class StudentComponent {
 
   deleteStudent(id: number) {
     const modalRef = this.modalService.open(ConfirmDeleteModalComponent, {
-      backdrop: 'static', // يمنع الإغلاق بالضغط خارج النافذة
-      keyboard: false,    // يمنع الإغلاق بزر Esc
+      backdrop: 'static',
+      keyboard: false,
     });
+  
+    modalRef.componentInstance.itemType = 'هذا الطالب'; // تمرير النص الصحيح
   
     modalRef.result.then(
       (confirmed) => {
         if (confirmed) {
-          // تنفيذ الحذف إذا وافق المستخدم
           this.students = this.students.filter(student => student.id !== id);
           this.filteredStudents = [...this.students];
         }
       },
-      () => {} // يتم تجاهل الإغلاق بدون تأكيد
-    );}
+      () => {}
+    );
+  }
+  
 
   save(formData: any) {
     if (formData.id) {
