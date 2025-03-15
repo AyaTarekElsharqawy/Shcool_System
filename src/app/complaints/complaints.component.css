@@ -1,0 +1,129 @@
+.complaints-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* زر الشكاوى */
+.complaints-title {
+  display: inline-block;
+  background: rgba(80, 156, 219, 1);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+  margin-bottom: 15px;
+  width: 151px ;
+}
+
+
+/* تقسيم كل شكوى بنفس التنسيق في الصورة */
+.complaint-card {
+  /* background: rgba(80, 156, 219, 0.08); */
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d6e4ff; /* حدود ناعمة بنفس لون الصورة */
+  color: rgba(133, 133, 133, 1); /* تغيير لون الكتابة داخل الـ div */
+
+}
+
+.complaint-card:nth-child(odd) {
+}
+
+.complaint-card:nth-child(even) {
+}
+
+  
+
+  .complaint-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* توزيع العناصر بالتساوي */
+    font-weight: bold;
+    color: rgba(80, 156, 219, 1);
+    flex-direction: row-reverse; /* جعل العناصر تبدأ من اليمين إلى اليسار */
+  }
+
+.complaint-date {
+  color: rgba(80, 156, 219, 1) !important;
+  font-weight: bold;
+  margin-right: auto; /* دفع التاريخ إلى الجهة اليسرى */
+}
+
+/* .parent-info {
+  font-weight: bold;
+ color: rgba(80, 156, 219, 1);
+ 
+
+
+}
+
+
+.arrow-icon {
+  font-size: 18px;
+  color: rgba(80, 156, 219, 1);
+  margin: 0 5px; /* مسافة صغيرة بين العناصر */
+/* } */ 
+
+.parent-info {
+  font-weight: bold;
+  color: rgba(80, 156, 219, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px; /* إضافة مسافة بين العناصر */
+}
+
+.arrow-icon {
+  font-size: 20px; /* تكبير حجم السهم */
+  color: rgba(80, 156, 219, 1);
+  width: 30px;
+  border-style: 2px;
+}
+
+.complaint-message {
+  margin-top: 10px;
+  /* background-color: #ffffff; لون الخلفية الداخلية */
+  padding: 12px;
+  border-radius: 6px;
+  line-height: 1.6;
+  background-color: rgba(133, 133, 133, 1);
+  font-size: 14px;
+}
+
+/* عند عدم توفر بيانات */
+.no-data-message {
+  text-align: center;
+  background-color: rgba(133, 133, 133, 1);
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* تخصيص القائمة الجانبية لتكون مطابقة */
+.sidebar {
+  background-color: #112d57;
+  /* color: white; */
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+}
+

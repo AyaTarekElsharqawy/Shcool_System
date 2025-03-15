@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-end align-items-center mb-3">
+      <div class="search-box">
+          <input
+              type="text"
+              class="form-control search-input"
+              placeholder="البحث عن الطالب بالاسم"
+              [(ngModel)]="searchText"
+          />
+          <span class="search-icon">
+              <i class="bi bi-search"></i>
+          </span>
+      </div>
+  </div>
+
+  <table class="table table-bordered text-center">
+      <thead class="table-light">
+          <tr>
+              <th>الصورة</th>
+              <th>الاسم</th>
+              <th>كودالطالب</th>
+              <th>الحالة</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let student of filteredStudents()">
+              <td>
+                  <img 
+                      [src]="student.image ? student.image : 'https://cdn-icons-png.flaticon.com/128/149/149071.png'" 
+                      class="student-img" 
+                      alt="Student Image"
+                  />
+              </td>
+              <td>{{ student.name }}</td>
+              <td>{{ student.studentCode }}</td>
+              <td class="status-cell">
+                <span
+                    *ngFor="let status of student.status"
+                    class="badge"
+                    [ngClass]="getStatusClass(status, student)"
+                >
+                    {{ status }}
+                </span>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
