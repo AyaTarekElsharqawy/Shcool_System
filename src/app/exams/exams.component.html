@@ -45,7 +45,6 @@
             <tr>
               <th>اليوم</th>
               <th>الساعة</th>
-              <th>المادة</th>
               <th>تحميل</th>
             </tr>
           </thead>
@@ -54,7 +53,6 @@
             <tr>
               <td>{{ exam.day }}</td>
               <td>{{ exam.time }}</td>
-              <td>{{ exam.subject }}</td>
               <td>
                 <button class="download-btn" (click)="downloadExam(exam)">
                   تحميل <i class="fa-solid fa-arrow-down"></i>
