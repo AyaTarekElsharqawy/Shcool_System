@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
 }
 
 .class-card {
@@ -44,24 +43,26 @@
 
 .subject
 {
-    flex: 7;
+    flex: 2;
 }
 .class-header
 {
-    flex: 9;
+    flex: 3;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .days
 {
-    flex: 1;
+    flex: 2;
 }
 .time
 {
     flex:1
 }
 .teacher-image {
+    flex: 1;
+    margin-right: 10px;
     width: 40px;
     height: 40px;
     border-radius: 50%;

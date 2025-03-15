@@ -9,14 +9,13 @@
 
 .content {
   flex: 3;
-  margin-right: 20px;
-  padding: 20px;
+  padding: 20px 0px;
   overflow-y: auto;
   margin-top: 2.45%;
 
 }
 @media (max-width: 768px) {
   .app-container {
-    width: 40px;
+    width: 60px;
   }
 }

@@ -14,7 +14,7 @@ import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-del
 export class StudentComponent {
   searchQuery: string = '';
   filteredStudents: any[] = [];
-  students: any[] = []; // سيتم ملؤه بالبيانات
+  students: any[] = [];
 
   constructor(private fb: FormBuilder, private modalService: NgbModal) {
     this.filteredStudents = [...this.students];
@@ -29,7 +29,7 @@ export class StudentComponent {
     modalRef.componentInstance.studentForm = this.fb.group({
       id: [student?.id || null],
       name: [student?.name || '', Validators.required],
-      age: [student?.age || null, [Validators.required, Validators.min(5)]],
+      age: [student?.age || null, [Validators.required, Validators.min(3)]],
       class: [student?.class || '', Validators.required],
       guardianPhone: [student?.guardianPhone || '', [Validators.required, Validators.pattern(/^\d{11}$/)]],
       whatsapp: [student?.whatsapp || '', [Validators.required, Validators.pattern(/^\d{11}$/)]],
