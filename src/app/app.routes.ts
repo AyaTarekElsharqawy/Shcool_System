@@ -1,33 +1,10 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ExamsComponent } from './exams/exams.component';
-import { StudentComponent } from './student/student.component';
-import { TeacherComponent } from './teacher/teacher.component';
-import { ClassesListComponent } from './classes-list/classes-list.component';
-import { StudentsListComponent } from './students-list/students-list.component';
-import { SubscriptionsAndSalariesComponent } from './subscriptions-and-salaries/subscriptions-and-salaries.component';
-import { ComplaintsComponent } from './complaints/complaints.component';
-import { TeachersTableComponent } from './teachers-table/teachers-table.component';
-import { StudentsTableComponent } from './students-table/student.component';
+import { teacherRoutes } from './features/dashboard/teachers/teacher.routes';
+ import { Routes } from '@angular/router';
+ //Admin Links
+ import { adminRoutes } from './features/dashboard/admin/admin.routes';
 
 export const routes: Routes = [
-    {
-        path:'',
-        component: HomeComponent,
-    },
-    {
-        path:'exam',
-        component:ExamsComponent
-    },
-    { path: 'students', component: StudentComponent },
-    { path: 'students/:query', component: StudentComponent }, 
-    { path: 'teachers', component: TeacherComponent },
-    { path: 'teachers/:query', component: TeacherComponent }, 
-    {path: 'classes',component:ClassesListComponent},
-    {path: 'attendance',component:StudentsListComponent},
-    {path: 'fees',component:SubscriptionsAndSalariesComponent},
-    {path: 'Complaints',component:ComplaintsComponent},
-    {path: 'teachersFees',component:TeachersTableComponent},
-    {path: 'studentsFees',component:StudentsTableComponent},
-    
+  { path: '', redirectTo: 'admin/home', pathMatch: 'full' }, 
+  { path: 'admin', children: adminRoutes }, 
+  { path: 'teacher', children: teacherRoutes },
 ];

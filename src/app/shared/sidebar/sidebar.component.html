@@ -1,0 +1,73 @@
+<!-- <nav class="sidebar" [class.open]="isSidebarOpen">
+  <div class="profile">
+    <div class="avatar d-none d-md-blok"></div>
+    <h4 class="fw-bold mt-4 mb-4">  روضة الفرقان</h4>
+  </div>
+  <ul>
+    <li>
+      <a routerLink="/admin/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <i class="fa-solid fa-house"></i>
+        <span class="me-3">الصفحة الرئيسية</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/classes" routerLinkActive="active">
+        <i class="fa-solid fa-book"></i>
+        <span class="me-3">الفصول</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/teachers" routerLinkActive="active">
+        <i class="fa-solid fa-user-tie"></i>
+        <span class="me-3">المعلمون</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/students" routerLinkActive="active">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span class="me-3">الطلاب</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/attendance" routerLinkActive="active">
+        <i class="fa-regular fa-circle-check"></i>
+        <span class="me-3">الحضور</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/exam" routerLinkActive="active">
+        <i class="fa-regular fa-pen-to-square"></i>
+        <span class="me-3">الامتحانات</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/fees" routerLinkActive="active" >
+        <i class="fa-solid fa-sack-dollar"></i>
+        <span class="me-3">الاشتراكات والأجور</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/complaints" routerLinkActive="active" >
+        <i class="fa-solid fa-message"></i>
+        <span class="me-3">التعليمات والشكاوى</span>
+      </a>
+    </li>
+  </ul>
+</nav> -->
+<nav class="sidebar" [class.open]="isSidebarOpen">
+  <div class="profile">
+    <div class="avatar d-none d-md-block"></div>
+    <h4 class="fw-bold mt-4 mb-4">روضة الفرقان</h4>
+  </div>
+  <ul>
+    @for (link of links; track link) {
+      <li>
+        <a [routerLink]="link.path" routerLinkActive="active"[routerLinkActiveOptions]="{ exact: true }">
+          <i class="{{ link.icon }}"></i>
+          <span class="me-3">{{ link.title }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+
