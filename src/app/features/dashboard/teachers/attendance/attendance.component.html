@@ -1,0 +1,32 @@
+<div class="container">
+    <!-- الفلاتر -->
+    <div class="row align-items-center mb-3">
+      <div class="col-md-6">
+        <label for="classSelect" class="form-label">اختر الفصل:</label>
+        <select id="classSelect" [(ngModel)]="selectedClass" class="form-select">
+          <option *ngFor="let class of classes" [value]="class">{{ class }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="daySelect" class="form-label">اختر اليوم:</label>
+        <select id="daySelect" [(ngModel)]="selectedDay" class="form-select">
+          <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- قائمة الطلاب -->
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let student of filteredStudents">
+        <div class="student-card" [class.present]="student.present" (click)="toggleAttendance(student)">
+          <i class="fa fa-check-circle attendance-icon" [class.active]="student.present"></i>
+          <img [src]="student.image" alt="Student Image" class="student-image">
+          <div class="student-info">
+            <h5>{{ student.name }}</h5>
+            <p class="student-email">{{ student.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

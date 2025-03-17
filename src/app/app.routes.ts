@@ -1,4 +1,5 @@
 import { teacherRoutes } from './features/dashboard/teachers/teachers.routes';
+
  import { Routes } from '@angular/router';
  //Admin Links
  import { adminRoutes } from './features/dashboard/admin/admin.routes';
@@ -6,5 +7,6 @@ import { teacherRoutes } from './features/dashboard/teachers/teachers.routes';
 export const routes: Routes = [
   { path: '', redirectTo: 'admin/home', pathMatch: 'full' }, 
   { path: 'admin', children: adminRoutes }, 
-  { path: 'teachers', children: teacherRoutes },
+  { path: 'teacher', children: teacherRoutes },
+
 ];
