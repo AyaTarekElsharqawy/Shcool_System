@@ -17,7 +17,7 @@ export class AppComponent {
   adminLinks = [
     { title: 'الصفحة الرئيسية', path: '/admin/home', icon: 'fa-solid fa-house' },
     { title: 'الفصول', path: '/admin/classes', icon: 'fa-solid fa-book' },
-    { title: 'المعلمون', path: '/admin/teacher', icon: 'fa-solid fa-user-tie' },
+    { title: 'المعلمون', path: '/admin/teachers', icon: 'fa-solid fa-user-tie' },
     { title: 'الطلاب', path: '/admin/students', icon: 'fa-solid fa-graduation-cap' },
     { title: 'الحضور', path: '/admin/attendance', icon: 'fa-regular fa-circle-check' },
     { title: 'الامتحانات', path: '/admin/Exams', icon: 'fa-regular fa-pen-to-square' },
