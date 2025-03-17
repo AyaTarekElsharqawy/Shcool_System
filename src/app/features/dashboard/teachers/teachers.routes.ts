@@ -4,7 +4,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 
 
 export const teacherRoutes: Routes = [
-  { path: 'teachers', component: TeachersComponent, children: [
-    { path: 'attendance', component: AttendanceComponent },
-  ]}
+  { path: 'teacher', component: TeachersComponent},
+  { path: 'attendance', component: AttendanceComponent },
+  
 ];

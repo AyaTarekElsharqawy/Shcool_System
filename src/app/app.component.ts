@@ -27,12 +27,9 @@ export class AppComponent {
   teacherLinks = [
     { title: 'الصفحة الرئيسية', path: '/teacher/home', icon: 'fa-solid fa-house' },
     { title: 'الفصول', path: '/teacher/classes', icon: 'fa-solid fa-book' },
-    { title: 'المعلمون', path: '/teacher/teachers', icon: 'fa-solid fa-user-tie' },
-    { title: 'الطلاب', path: '/teacher/students', icon: 'fa-solid fa-graduation-cap' },
     { title: 'الحضور', path: '/teacher/attendance', icon: 'fa-regular fa-circle-check' },
-    { title: 'الامتحانات', path: '/teacher/Exams', icon: 'fa-regular fa-pen-to-square' },
-    { title: 'الاشتراكات والأجور', path: '/teacher/fees', icon: 'fa-solid fa-sack-dollar' },
-    { title: 'التعليمات والشكاوى', path: '/teacher/complaints', icon: 'fa-solid fa-message' }
+    { title: 'الامتحانات', path: '/teacher/exams', icon: 'fa-regular fa-pen-to-square' },
+    { title: 'التعليمات ', path: '/teacher/instructions', icon: 'fa-solid fa-message' }
   ];
   constructor(private router: Router) {}
 
