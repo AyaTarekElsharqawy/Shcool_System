@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'admin-student-card',
-  imports: [CommonModule],
+  standalone: true,
   templateUrl: './student-card.component.html',
-  styleUrl: './student-card.component.css'
+  styleUrls: ['./student-card.component.css'],
+  imports: [CommonModule]
 })
 export class StudentCardComponent {
   @Input() studentImage!: string;
   @Input() studentName!: string;
   @Input() studentID!: string;
+  @Input() studentEmail!: string;
 }
