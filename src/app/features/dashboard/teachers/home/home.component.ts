@@ -19,13 +19,4 @@ export class HomeComponent {
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {
-    this.dataService.getData().subscribe(response => {
-      if (response && response.banner) { 
-        this.bannerData = response;
-      } else {
-        console.error('No banner data found in response:', response);
-      }
-    });
-  }
 }
