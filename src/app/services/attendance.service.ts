@@ -24,7 +24,6 @@ export class AttendanceService {
     return JSON.parse(localStorage.getItem('attendance') || '{}');
   }
 
-  // ✅ دالة لاسترجاع بيانات الحضور عند الحاجة
   getAttendance(): { [id: number]: boolean } {
     return this.loadAttendance();
   }
