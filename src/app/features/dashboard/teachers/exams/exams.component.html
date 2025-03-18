@@ -1,71 +1,162 @@
 <div class="exam">
   <div class="container">
     @if (step() === 1) {
-    <div class="step-container">
-      <div class="search-container">
-        <input
-          type="text"
-          [(ngModel)]="searchQuery"
-          (input)="filterSubjects()"
-          placeholder=" ابحث عن المادة..."
-          class="search-input"
-        />
+      <div class="step-container buttons">
+        <button (click)="goToStep(2)">إنشاء اختبار جديد</button>
+        <button (click)="goToStep(3)">الاختبارات السابقة</button>
       </div>
-      <div class="subjects row">
-        @for (subject of filteredSubjects(); track subject.name) {
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-          <button
-            (click)="selectSubject(subject)"
-            [ngClass]="getSubjectClass(subject.name)"
-          >
-            <i class="fa-solid fa-folder ms-2"></i> {{ subject.name }}
-          </button>
+    }
+
+    @if (step() === 2) {
+      <div class="form-container">
+        <h3>إنشاء اختبار</h3>
+        <form (submit)="saveExamAndGoToStep5($event)">
+          <label for="subject">اختر المادة:</label>
+          <select id="subject" [(ngModel)]="newExam().subject" name="subject" required>
+            <option value="" disabled selected>اختر المادة</option>
+            @for (subject of subjects(); track subject.name) {
+              <option [value]="subject.name">{{ subject.name }}</option>
+            }
+          </select>
+
+          <label for="examName">اسم الاختبار:</label>
+          <input type="text" id="examName" [(ngModel)]="newExam().name" name="examName" required />
+
+          <label for="examDate">تاريخ الاختبار:</label>
+          <input type="date" id="examDate" [(ngModel)]="newExam().date" name="examDate" required />
+
+          <label for="examTime">وقت الاختبار:</label>
+          <input type="time" id="examTime" [(ngModel)]="newExam().time" name="examTime" required />
+
+          <label for="examType">نوع الاختبار:</label>
+          <select id="examType" [(ngModel)]="newExam().examType" name="examType" required>
+            <option value="" disabled selected>اختر نوع الاختبار</option>
+            <option value="weekly">اختبار أسبوعي</option>
+            <option value="monthly">اختبار شهري</option>
+          </select>
+
+          <label for="class">الصف الدراسي:</label>
+          <select id="class" [(ngModel)]="newExam().class" name="class" required>
+            <option value="" disabled selected>اختر الصف</option>
+            <option value="1">Kg-1</option>
+            <option value="2">Kg-2</option>
+          </select>
+
+          <label for="duration">مدة الاختبار:</label>
+          <input type="number" id="duration" [(ngModel)]="newExam().duration" name="duration" required min="1" placeholder="بالدقائق" />
+
+          <label for="questions">الأسئلة:</label>
+          <textarea id="questions" [(ngModel)]="newExam().questions" name="questions" rows="4" required></textarea>
+
+          <div class="form-buttons">
+            <button type="button" class="back-btn" (click)="goToStep(1)">العودة</button>
+            <button type="submit" class="save-btn" >حفظ</button>
+          </div>
+        </form>
+      </div>
+    }
+
+    @if (step() === 3) {
+      <div class="step-container">
+        <div class="search-container">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (input)="filterSubjects()"
+            placeholder="ابحث عن المادة..."
+            class="search-input"
+          />
         </div>
+        <div class="subjects row">
+          @for (subject of filteredSubjects(); track subject.name) {
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <button
+                (click)="selectSubject(subject)"
+                [ngClass]="getSubjectClass(subject.name)"
+              >
+                <i class="fa-solid fa-folder ms-2"></i> {{ subject.name }}
+              </button>
+            </div>
+          }
+        </div>
+        @if (filteredSubjects().length === 0) {
+          <p class="no-results">⚠ لا توجد مواد مطابقة للبحث.</p>
         }
       </div>
+    }
 
-      @if (filteredSubjects().length === 0) {
-      <p class="no-results">⚠ لا توجد مواد مطابقة للبحث.</p>
-      }
-    </div>
-    } @if (step() === 2) {
-    <div class="step-container buttons">
-      <button (click)="selectExamType('weekly')">الاختبارات الأسبوعية</button>
-      <button (click)="selectExamType('monthly')">الاختبارات الشهرية</button>
-    </div>
-    } @if (step() === 3) {
-    <div class="step-container">
-      <h3>
-        جدول الامتحانات لـ {{ selectedSubject()?.name }} -
-        {{ selectedExamType() === "weekly" ? "الأسبوعية" : "الشهرية" }}
-      </h3>
-      <div class="exam-table-container">
-        <table class="exam-table">
-          <thead>
-            <tr>
-              <th>اليوم</th>
-              <th>الساعة</th>
-              <th>تحميل</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (exam of exams(); track exam.id) {
-            <tr>
-              <td>{{ exam.day }}</td>
-              <td>{{ exam.time }}</td>
-              <td>
-                <button class="download-btn" (click)="downloadExam(exam)">
-                  تحميل <i class="fa-solid fa-arrow-down"></i>
-                </button>
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
+    @if (step() === 4) {
+      <div class="step-container buttons">
+        <button (click)="selectExamType('weekly')">الاختبارات الأسبوعية</button>
+        <button (click)="selectExamType('monthly')">الاختبارات الشهرية</button>
       </div>
+    }
 
-      <button class="back-btn" (click)="reset()">العودة</button>
-    </div>
+    <!-- @if (step() === 5) {
+      <div class="step-container">
+        @if (selectedSubject()) {
+          <h2> جدول الامتحانات لـ - {{ selectedSubject() }} ({{ selectedExamType() === 'weekly' ? 'أسبوعي' : 'شهري' }}) </h2>
+        }
+        
+        @if (filteredExams().length > 0) {
+          <div class="exam-table-container">
+              <table class="exam-table">
+                <thead>
+                  <tr>
+                    <th>اليوم</th>
+                    <th>الساعة</th>
+                    <th>تحميل</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (exam of filteredExams(); track exam.id) {
+                    <tr>
+                      <td>{{ exam.date }}</td>
+                      <td>{{ exam.time }}</td>
+                      <td><button (click)="downloadExam(exam)">تحميل</button></td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+          </div>
+        } @else {
+          <p> لا يوجد امتحانات لهذه المادة. </p>
+        }        
+        <button class="back-btn" (click)="goToStep(1)">العودة</button>
+      </div>
+    } -->
+    @if (step() === 5) {
+      <div class="step-container">
+        @if (selectedSubject()) {
+          <h2> جدول الامتحانات لـ - {{ selectedSubject() }} ({{ selectedExamType() === 'weekly' ? 'أسبوعي' : 'شهري' }}) </h2>
+        }
+        
+        @if (filteredExams().length > 0) {
+          <div class="exam-table-container">
+              <table class="exam-table">
+                <thead>
+                  <tr>
+                    <th>اليوم</th>
+                    <th>الساعة</th>
+                    <th>تحميل</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (exam of filteredExams(); track exam.id) {
+                    <tr>
+                      <td>{{ exam.date }}</td>
+                      <td>{{ exam.time }}</td>
+                      <td><button (click)="downloadExam(exam)" class="download-btn">تحميل</button></td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+          </div>
+        } @else {
+          <p> لا يوجد امتحانات لهذه المادة. </p>
+        }        
+        <button class="back-btn" (click)="goToStep(1)">العودة</button>
+      </div>
     }
   </div>
 </div>

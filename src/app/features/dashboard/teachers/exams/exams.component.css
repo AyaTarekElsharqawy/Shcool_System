@@ -1,49 +1,177 @@
-.step-container {
+
+  .step-container {
     text-align: center;
-    margin: 4rem auto;
-    width: 80%;
-}
-.search-container {
+    margin: 2rem auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .form-container {
+    text-align: right;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 1000px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .form-container h3
+  {
+    background-color: #509CDB;
+    color: white;
+    text-align: center !important;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: #f9f9f9;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .save-btn, .back-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-btn {
+    background: #28a745; /* أخضر */
+    color: white;
+  }
+  
+  .save-btn:hover {
+    background: #218838; /* أخضر داكن */
+  }
+  
+  .back-btn {
+    background: #dc3545; /* أحمر */
+    color: white;
+  }
+  
+  .back-btn:hover {
+    background: #c82333; /* أحمر داكن */
+  }
+  .search-container {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-}
-
-.search-input {
+  }
+  
+  .search-input {
     width: 100%;
     padding: 10px 15px;
-    margin-top: 4rem;
     font-size: 16px;
     border: 2px solid #ddd;
     border-radius: 25px;
     outline: none;
-    transition: 0.3s;
+    transition: border-color 0.3s ease;
     text-align: right;
-    box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
-
-}
-
-.search-input::placeholder {
-    color: #aaa;
-    font-style: italic;
-}
-
-.search-input:focus {
+    background-color: #f9f9f9;
+  }
+  
+  .search-input:focus {
     border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-}
-button
-{
-    transition: 0.3s;
-
-}
-button:hover
-{
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
-}
-
-.subjects {
+  }
+  
+  .exam-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .exam-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  
+  .exam-table th, .exam-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .exam-table th {
+    background-color: #0056b3; 
+    color: white;
+  }
+  
+  .exam-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  .exam-table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  .download-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    background-color:#2980b9 ;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 5px 20px;
+    border-radius: 10px;
+  }
+  
+  .download-btn:hover {
+    color: #1c5a8a;
+    background-color: #e6f2ff;
+  }
+  .subjects {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -51,7 +179,7 @@ button:hover
     margin-top: 4rem;
 }
 
-.subjects button, .download-btn, .back-btn {
+.subjects button{
     display: block;
     width: 100%;
     margin: 10px 0;
@@ -60,45 +188,26 @@ button:hover
     border-radius: 8px;
     cursor: pointer;
 }
-
-.exam-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.exam-table th, .exam-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-.exam-table th {
-    background-color: #0056b3;
-    color: white;
-}
-
-.download-btn {
-    background-color: #007bff;
-    color: white;
+ 
+.blue { 
+    background-color: #509CDB4D; 
+    color: #509CDB;
     border: none;
 }
-
-.download-btn:hover {
-    background-color: #0056b3;
-}
-
-.back-btn {
-    background-color: #dc3545;
-    color: white;
+.red { 
+    background-color: #5C4E8E40; color: #5C4E8E;
     border: none;
-    margin-top: 20px;
 }
-
-.back-btn:hover {
-    background-color: #c82333;
+.white {
+     background-color: #EDBD1C42; color: #EDBD1C ;
+    border: none;
 }
-
+.green {
+    background-color: #E1006529;
+    color: #E10065;
+    border: none;
+}
+  
 .buttons{
     display: flex;
     justify-content: center; 
@@ -121,67 +230,7 @@ button:hover
     cursor: pointer;
     transition: 0.3s;
 }
-
-.blue { 
-    background-color: #509CDB4D; 
-    color: #509CDB;
-    border: none;
-}
-.red { 
-    background-color: #5C4E8E40; color: #5C4E8E;
-    border: none;
-}
-.white {
-     background-color: #EDBD1C42; color: #EDBD1C ;
-    border: none;
-}
-.green {
-    background-color: #E1006529;
-    color: #E10065;
-    border: none;
-}
-
-.exam-table-container {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 20px;
-    
-}
-
-.exam-table {
-    width: 100%;
-    margin-top: 3rem;
-    border-collapse: collapse;
-    font-size: 16px;
-}
-
-.exam-table thead tr {
-    background-color: #f8f8f8;
-    text-align: right;
-    font-weight: bold;
-}
-
-.exam-table th, .exam-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-.exam-table tbody tr:nth-child(even) {
-    background-color: #d4e6f1; 
-}
-
-.exam-table tbody tr:nth-child(odd) {
-    background-color: #ffffff; 
-}
-
-.download-btn {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #2980b9;
-}
-
-.download-btn:hover {
-    color: #ffffff;
-}
+  
+  .buttons button:hover {
+    background-color: #2980b9; 
+  }
