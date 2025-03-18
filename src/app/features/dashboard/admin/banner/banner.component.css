@@ -62,7 +62,9 @@ transform: translateX(-100%);
   .banner-img {
       max-width: 300px;
   }
-
+.banner{
+  margin-top: 9%;
+}
   .banner-img img {
       max-width: 80px;
   }
