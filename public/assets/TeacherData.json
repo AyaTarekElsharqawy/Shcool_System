@@ -8,32 +8,38 @@
     {
       "name": "أ. أحمد محمد عبدالله",
       "image": "assets/images/Teachers/ahmed.png",
-      "time": "7:00 ص"
+      "time": "7:00 ص",
+      "subject": "فرنساوي"
     },
     {
       "name": "أ. فاطمة علي حسن",
       "image": "assets/images/Teachers/fatma.png",
-      "time": "8:00 ص"
+      "time": "8:00 ص",
+      "subject": "حاسب آلي"
     },
     {
       "name": "أ. خالد سعيد محمود",
       "image": "assets/images/Teachers/khaled.png",
-      "time": "9:00 ص"
+      "time": "9:00 ص",
+      "subject": "علوم"
     },
     {
       "name": "أ. سارة عبد الرحمن",
       "image": "assets/images/Teachers/sara.png",
-      "time": "10:00 ص"
+      "time": "10:00 ص",
+      "subject": "رياضيات"
     },
     {
       "name": "أ. محمد علي أحمد",
       "image": "assets/images/Teachers/mohamed.png",
-      "time": "11:00 ص"
+      "time": "11:00 ص",
+      "subject": "اللغة الإنجليزية"
     },
     {
       "name": "أ. ليلى محمود سليمان",
       "image": "assets/images/Teachers/leila.png",
-      "time": "12:00 م"
+      "time": "12:00 م",
+       "subject": "اللغة العربية"
     }
   ],
   "schedule": [
@@ -75,10 +81,15 @@
       "image": "assets/images/schedule/math.jpg"
     }
   ],
-  "stats": {
-    "presentStudents": 11020,
-    "absentStudents": 25000
-  },
+  "grades": [
+    { "subject": "فرنساوي", "grade": 20, "color": "#509CDB" },
+    { "subject": "حاسب آلي", "grade": 60, "color": "#E10065" },
+    { "subject": "انجليزي", "grade": 70, "color": "#EFF2FF" },
+    { "subject": "عربي", "grade": 80, "color": "#0177FB" },
+    { "subject": "رياضيات", "grade": 90, "color": "#5C4E8E" },
+    { "subject": "علوم", "grade": 75, "color": "#3FB65F" }
+  ]
+  ,
   "notifcation": [
     {
       "message":" تم تسجيل حضورك اليوم",

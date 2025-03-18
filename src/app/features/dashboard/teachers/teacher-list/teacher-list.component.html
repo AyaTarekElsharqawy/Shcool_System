@@ -1,0 +1,15 @@
+<div class="card shadow-sm p-3">
+  <ul class="list-group">
+    @for (teacher of teachers; track teacher.name) {
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center teacher-name">
+          <img [src]="teacher.image" alt="Teacher Image" class="rounded-circle ms-3 teacher-img">
+          <span class="fw-semibold">{{ teacher.name }}</span>
+        </div>
+        <span class="badge subject-badge">
+          {{ teacher.subject }}
+        </span>
+      </li>
+    }
+  </ul>
+</div>
