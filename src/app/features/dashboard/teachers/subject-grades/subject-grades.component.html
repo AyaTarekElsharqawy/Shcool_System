@@ -1,0 +1,22 @@
+
+<div class=" mt-5 grades text-end">
+    <h4 class="mb-4 mt-1">التقييمات</h4>
+    <div class="d-flex justify-content-around gap-2 ">
+      @for (grade of grades; track grade.subject) {
+        <div class="text-center content">
+          <div class="progress vertical-progress">
+            <div class="progress-bar" 
+                 [ngStyle]="{ 'height': grade.grade + '%', 'background': grade.color }" 
+                 role="progressbar" 
+                 [attr.aria-valuenow]="grade.grade" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100">
+            </div>
+          </div>
+          <span class="fw-bold d-block mt-2">{{ grade.subject }}</span>
+        </div>
+      }
+    </div>
+  </div>
+  
+  
