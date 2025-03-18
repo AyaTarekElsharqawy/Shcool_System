@@ -16,9 +16,6 @@
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
-  background: gray;
   border-radius: 50%;
   margin: 0 auto 10px;
 }
