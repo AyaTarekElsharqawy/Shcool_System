@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component,Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentCardComponent } from '../student-card/student-card.component';
-import { Output } from '@angular/core';
-@Component({
-  selector: 'admin-students-list',
-  imports: [CommonModule,StudentCardComponent],
-  templateUrl: './students-list.component.html',
-  styleUrl: './students-list.component.css'
-})
-export class StudentsListComponent {
+import { FormsModule } from '@angular/forms';
 
-   students = [
+
+@Component({
+  selector: 'app-add-exam-marks',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './add-exam-marks.component.html',
+  styleUrl: './add-exam-marks.component.css'
+})
+export class AddExamMarksComponent{
+
+  students : Array<any> = [
     {
       "id": 1,
       "name": "أحمد محمد علي",
@@ -156,6 +157,16 @@ export class StudentsListComponent {
       "studentid": "547408"
     }
   ];
+
+
+  @Input() studentID!: string;
+
+  // @Input() id:string = '';
+
+  // ngOnInit() {
+  //   console.log(this.id);
+  //   console.log(this.students.find(student => Number(student.studentid) === Number(this.id)));
+  // }
 
 
 }

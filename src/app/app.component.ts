@@ -29,7 +29,9 @@ export class AppComponent {
     { title: 'الفصول', path: '/teacher/classes', icon: 'fa-solid fa-book' },
     { title: 'الحضور', path: '/teacher/attendance', icon: 'fa-regular fa-circle-check' },
     { title: 'الامتحانات', path: '/teacher/exams', icon: 'fa-regular fa-pen-to-square' },
-    { title: 'التعليمات ', path: '/teacher/instructions', icon: 'fa-solid fa-message' }
+    { title: 'التعليمات ', path: '/teacher/instructions', icon: 'fa-solid fa-message' },
+    {title:'اضافه درجه الامتحان',path:'/teacher/add-exam',icon:'fa-solid fa-plus'}
+
   ];
   constructor(private router: Router) {}
 
