@@ -1,4 +1,30 @@
+<!-- <div>
+  <h4>إدخال درجات الطالب</h4>
+  <label>رقم الطالب: {{ studentID }}</label>
+  <input type="number" [(ngModel)]="marks" class="form-control mt-2">
+  <button class="btn btn-primary mt-3" (click)="saveMarks()">حفظ</button>
+</div> -->
 
+
+
+
+
+
+<div class="exam-marks-container">
+  <div *ngFor="let subject of subjects; let i = index" class="mb-3">
+    <label>{{ subject.name }}</label>
+    <input type="number" [(ngModel)]="subjects[i].marks" class="form-control">
+  </div>
+  <button class="btn btn-primary mt-2" (click)="saveMarks()">حفظ</button>
+</div>
+
+
+
+
+
+
+
+<!--
         <form>
           <div class="form-group">
             <label>اللغة العربية</label>
@@ -24,4 +50,4 @@
             <button type="submit" class="btn btn-success btn-lg w-50 submit-btn">إرسال</button>
           </div>
         </form>
-
+ -->

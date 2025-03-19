@@ -1,7 +1,7 @@
 import { Component,Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-add-exam-marks',
@@ -158,15 +158,45 @@ export class AddExamMarksComponent{
     }
   ];
 
+  @Input() studentID!: any;
 
-  @Input() studentID!: string;
+  marks: number = 0;
 
-  // @Input() id:string = '';
+  subjects: { name: string; marks: number }[] = [
+    { name: 'اللغة العربية', marks: 0 },
+    { name: 'اللغة الإنجليزية', marks: 0 },
+    { name: 'التربية الدينية', marks: 0 },
+    { name: 'العلوم', marks: 0 }
+  ];
+  saveMarks() {
+    if (this.studentID && this.studentID.studentid) {
+      const key = `marks_${this.studentID.studentid}`;
+      localStorage.setItem(key, JSON.stringify(this.subjects));
+      alert('تم حفظ الدرجات بنجاح!');
+    } else {
+      alert('لم يتم تحديد الطالب بشكل صحيح!');
+    }
+  }
 
-  // ngOnInit() {
-  //   console.log(this.id);
-  //   console.log(this.students.find(student => Number(student.studentid) === Number(this.id)));
-  // }
+
+  getMarks() {
+    if (this.studentID && this.studentID.studentid) {
+      const key = `marks_${this.studentID.studentid}`;
+      const storedMarks = localStorage.getItem(key);
+      if (storedMarks) {
+        this.subjects = JSON.parse(storedMarks);
+      }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['studentID'] && changes['studentID'].currentValue) {
+      this.getMarks();
+    }
+  }
+
+
+
 
 
 }

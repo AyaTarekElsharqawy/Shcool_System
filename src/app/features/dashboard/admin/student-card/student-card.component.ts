@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { Input , Output,EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -159,11 +159,11 @@ export class StudentCardComponent {
     }
   ];
 
-  selectedStudent!: string;
+  // selectedStudent!: string;
 
-  setSelectedStudent(id: string) {
-    this.selectedStudent = id;
-  }
+  // setSelectedStudent(id: string) {
+  //   this.selectedStudent = id;
+  // }
 
   constructor(private router:Router){}
 
@@ -171,31 +171,21 @@ export class StudentCardComponent {
   @Input() studentName!: string;
   @Input() studentID!: string;
 
+  @Output() studentSelected = new EventEmitter<any>();
 
-  handleRedirectToAddMarks(id:string)
-  {
-   this.router.navigate(['/teacher/add-exam',id])
 
+  selectStudent() {
+    this.studentSelected.emit({
+      name: this.studentName,
+      studentid: this.studentID
+    });
   }
 
- isOpen = false; // يتحكم في إظهار وإخفاء الفورم
+  // handleRedirectToAddMarks(id:string)
+  // {
+  //  this.router.navigate(['/teacher/add-exam',id])
 
-  toggleForm() {
-    this.isOpen = !this.isOpen;
-  }
-  currentDate: Date = new Date(); // تعيين التاريخ الحالي
+  // }
 
-  previousMonth() {
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1); // الانتقال للشهر السابق
-    this.currentDate = new Date(this.currentDate); // تحديث الكائن
-  }
 
-  nextMonth() {
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1); // الانتقال للشهر التالي
-    this.currentDate = new Date(this.currentDate); // تحديث الكائن
-  }
-
-  get currentMonth(): string {
-    return this.currentDate.toLocaleString('ar-EG', { month: 'long' }); // عرض اسم الشهر باللغة العربية
-  }
 }

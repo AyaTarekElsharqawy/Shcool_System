@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentCardComponent } from '../student-card/student-card.component';
 import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-marks.component';
 @Component({
   selector: 'admin-students-list',
-  imports: [CommonModule,StudentCardComponent],
+  imports: [CommonModule,StudentCardComponent,AddExamMarksComponent],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css'
 })
@@ -157,5 +159,29 @@ export class StudentsListComponent {
     }
   ];
 
+  selectedStudent: any = null;
 
+  onStudentSelected(student: any) {
+    this.selectedStudent = student;
+  }
+  isOpen = false;
+
+  toggleForm() {
+    this.isOpen = !this.isOpen;
+  }
+  currentDate: Date = new Date();
+
+  previousMonth() {
+    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    this.currentDate = new Date(this.currentDate);
+  }
+
+  nextMonth() {
+    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    this.currentDate = new Date(this.currentDate);
+  }
+
+  get currentMonth(): string {
+    return this.currentDate.toLocaleString('ar-EG', { month: 'long' });
+  }
 }
