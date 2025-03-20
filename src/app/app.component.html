@@ -1,12 +1,12 @@
 <div class="app">
     <div class="app-container">
         @if (links.length > 0) {
-            <admin-sidebar [links]="links"></admin-sidebar>
+            <app-sidebar [links]="links"></app-sidebar>
           }
     </div>
     <div class="content">
         @if (links.length > 0) {
-            <admin-navbar></admin-navbar>
+            <app-navbar></app-navbar>
           }
       <router-outlet></router-outlet> 
     </div>

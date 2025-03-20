@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 @Component({
-  selector: 'admin-complaints',
+  selector: 'app-complaints',
   templateUrl: './complaints.component.html',
   styleUrls: ['./complaints.component.css'],
   imports: [CommonModule, FormsModule]

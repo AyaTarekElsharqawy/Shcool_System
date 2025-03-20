@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'admin-navbar',
+  selector: 'app-navbar',
   standalone: true,
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']

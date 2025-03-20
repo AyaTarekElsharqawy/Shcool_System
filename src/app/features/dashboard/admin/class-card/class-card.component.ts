@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, Renderer2, AfterViewInit } from '@angular
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'admin-class-card',
+  selector: 'app-class-card',
   imports: [CommonModule],
   templateUrl: './class-card.component.html',
   styleUrl: './class-card.component.css'

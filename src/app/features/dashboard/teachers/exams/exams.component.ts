@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
 
 @Component({
-  selector: 'admin-exam',
+  selector: 'app-exam',
   imports: [NgClass, FormsModule],
   templateUrl: './exams.component.html',
   styleUrls: ['./exams.component.css'],

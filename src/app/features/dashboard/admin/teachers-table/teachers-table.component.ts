@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'admin-teachers-table',
+  selector: 'app-teachers-table',
   standalone: true,
   templateUrl: './teachers-table.component.html',
   styleUrls: ['./teachers-table.component.css'],

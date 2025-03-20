@@ -8,7 +8,7 @@ import { MarqueeComponent } from '../marquee/marquee.component';
 import { TeacherListComponent } from "../teacher-list/teacher-list.component";
 
 @Component({
-  selector: 'admin-home',
+  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, BannerComponent, ScheduleComponent, StatisticsCardsComponent, MarqueeComponent, TeacherListComponent], // استيراد الوحدات النمطية المطلوبة هنا
   templateUrl: './home.component.html',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'admin-teacher-list',
+  selector: 'app-teacher-list',
   standalone: true,
   templateUrl: './teacher-list.component.html',
   styleUrls: ['./teacher-list.component.css']

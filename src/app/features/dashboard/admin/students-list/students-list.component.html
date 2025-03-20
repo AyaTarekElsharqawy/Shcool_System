@@ -9,7 +9,7 @@
     @for(student of students; track $index){
       <div class="col-6 col-sm-4 col-md-3 col-lg-2 ">
         <!-- <app-student-card ></app-student-card> -->
-        <admin-student-card [studentImage]="student.image" [studentName]="student.name" [studentID]="student.studentid"></admin-student-card>
+        <app-student-card [studentImage]="student.image" [studentName]="student.name" [studentID]="student.studentid"></app-student-card>
       </div>
     }
 

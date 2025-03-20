@@ -4,7 +4,7 @@ import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'admin-exam',
+  selector: 'app-exam',
   imports:[NgClass,FormsModule],
   templateUrl: './exams.component.html',
   styleUrls: ['./exams.component.css']

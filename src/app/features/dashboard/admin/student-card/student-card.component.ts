@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'admin-student-card',
+  selector: 'app-student-card',
   imports: [CommonModule],
   templateUrl: './student-card.component.html',
   styleUrl: './student-card.component.css'

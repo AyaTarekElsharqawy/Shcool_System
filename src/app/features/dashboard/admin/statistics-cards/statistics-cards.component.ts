@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'admin-statistics-cards',
+  selector: 'app-statistics-cards',
   standalone: true,
   templateUrl: './statistics-cards.component.html',
   styleUrls: ['./statistics-cards.component.css']

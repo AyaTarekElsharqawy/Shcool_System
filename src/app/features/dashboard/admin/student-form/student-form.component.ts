@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'admin-student-form',
+  selector: 'app-student-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './student-form.component.html',

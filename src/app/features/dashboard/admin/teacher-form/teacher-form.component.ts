@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'admin-teacher-form',
+  selector: 'app-teacher-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './teacher-form.component.html',

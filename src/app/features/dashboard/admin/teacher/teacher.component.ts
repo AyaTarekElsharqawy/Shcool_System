@@ -6,7 +6,7 @@ import { TEACHERS } from '../../../../../../public/assets/mock-data';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
-  selector: 'admin-teacher',
+  selector: 'app-teacher',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './teacher.component.html',

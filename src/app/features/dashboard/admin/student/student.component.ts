@@ -5,7 +5,7 @@ import { StudentFormComponent } from '../student-form/student-form.component';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
-  selector: 'admin-student',
+  selector: 'app-student',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './student.component.html',

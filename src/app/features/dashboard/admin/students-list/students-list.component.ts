@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StudentCardComponent } from '../student-card/student-card.component';
 
 @Component({
-  selector: 'admin-students-list',
+  selector: 'app-students-list',
   imports: [CommonModule,StudentCardComponent],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css'

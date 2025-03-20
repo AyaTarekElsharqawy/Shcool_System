@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'admin-schedule',
+  selector: 'app-schedule',
   imports: [NgClass],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css'

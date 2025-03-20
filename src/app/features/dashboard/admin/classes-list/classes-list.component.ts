@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ClassCardComponent } from '../class-card/class-card.component';
 
 @Component({
-  selector: 'admin-classes-list',
+  selector: 'app-classes-list',
   imports: [ClassCardComponent],
   templateUrl: './classes-list.component.html',
   styleUrl: './classes-list.component.css'

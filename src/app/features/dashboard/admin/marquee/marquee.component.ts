@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'admin-marquee',
+  selector: 'app-marquee',
   standalone: true,
   templateUrl: './marquee.component.html',
   styleUrls: ['./marquee.component.css']
