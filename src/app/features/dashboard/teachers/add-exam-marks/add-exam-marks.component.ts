@@ -1,18 +1,17 @@
-import { Component, Input , Output,EventEmitter} from '@angular/core';
+import { Component,Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-// import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-marks.component';
-
+import { SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'admin-student-card',
+  selector: 'app-add-exam-marks',
   imports: [CommonModule, FormsModule],
-  templateUrl: './student-card.component.html',
-  styleUrls: ['./student-card.component.css'],
+  templateUrl: './add-exam-marks.component.html',
+  styleUrl: './add-exam-marks.component.css'
 })
-export class StudentCardComponent {
-  students = [
+export class AddExamMarksComponent{
+
+  students : Array<any> = [
     {
       "id": 1,
       "name": "أحمد محمد علي",
@@ -159,23 +158,43 @@ export class StudentCardComponent {
     }
   ];
 
+  @Input() studentID!: any;
 
+  marks: number = 0;
 
-  constructor(private router:Router){}
-
-  @Input() studentImage!: string;
-  @Input() studentName!: string;
-  @Input() studentID!: string;
-  @Input() studentEmail!: string;
-  @Output() studentSelected = new EventEmitter<any>();
-
-
-  selectStudent() {
-    this.studentSelected.emit({
-      name: this.studentName,
-      studentid: this.studentID
-    });
+  subjects: { name: string; marks: number }[] = [
+    { name: 'اللغة العربية', marks: 0 },
+    { name: 'اللغة الإنجليزية', marks: 0 },
+    { name: 'التربية الدينية', marks: 0 },
+    { name: 'العلوم', marks: 0 }
+  ];
+  saveMarks() {
+    if (this.studentID && this.studentID.studentid) {
+      const key = `marks_${this.studentID.studentid}`;
+      localStorage.setItem(key, JSON.stringify(this.subjects));
+      alert('تم حفظ الدرجات بنجاح!');
+    } else {
+      alert('لم يتم تحديد الطالب بشكل صحيح!');
+    }
   }
+
+
+  getMarks() {
+    if (this.studentID && this.studentID.studentid) {
+      const key = `marks_${this.studentID.studentid}`;
+      const storedMarks = localStorage.getItem(key);
+      if (storedMarks) {
+        this.subjects = JSON.parse(storedMarks);
+      }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['studentID'] && changes['studentID'].currentValue) {
+      this.getMarks();
+    }
+  }
+
 
 
 
