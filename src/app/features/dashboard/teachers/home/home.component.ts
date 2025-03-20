@@ -15,17 +15,5 @@ import { SubjectGradesComponent } from '../subject-grades/subject-grades.compone
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  bannerData: any = null;
 
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    this.dataService.getData().subscribe(response => {
-      if (response && response.banner) { 
-        this.bannerData = response;
-      } else {
-        console.error('No banner data found in response:', response);
-      }
-    });
-  }
 }
