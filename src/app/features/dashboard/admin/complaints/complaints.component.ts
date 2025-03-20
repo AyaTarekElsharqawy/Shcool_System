@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ComplaintsComponent implements OnInit {
   complaints: any[] = [];
-  dataUrl: string = 'assets/data-mock.json'; // تأكدي أن هذا المسار صحيح
+  dataUrl: string = 'assets/data-mock.json'; 
 
   constructor(private http: HttpClient) {}
 

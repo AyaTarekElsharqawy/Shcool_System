@@ -13,16 +13,14 @@ export class ClassCardComponent {
   @Input() grade!: number;
 
 
-  // خريطة الألوان حسب الصف الدراسي
   private gradeColors: { [key: number]: string } = {
-    1: '#FF99A0', // برتقالي باستيلي
-    2: '#635DFF', // أزرق سماوي ناعم
-    3: '#27AE60'  // أخضر زيتوني باستيلي
+    1: '#FF99A0', 
+    2: '#635DFF', 
+    3: '#27AE60'  
   };
 
-  // ✅ جعل `borderColor` يتم حسابه تلقائيًا عند تغيير `grade`
   get borderColor(): string {
-    return this.gradeColors[this.grade] || '#000000'; // أسود كافتراضي
+    return this.gradeColors[this.grade] || '#000000';
   }
 
 

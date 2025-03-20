@@ -7,7 +7,7 @@ describe('StudentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StudentsTableComponent] // ✅ هنا يتم وضع المكون بشكل صحيح
+      declarations: [StudentsTableComponent] 
     })
     .compileComponents();
 

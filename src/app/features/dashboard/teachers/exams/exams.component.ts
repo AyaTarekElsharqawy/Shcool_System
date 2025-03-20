@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
+import Swal from 'sweetalert2';
+import { ExamService } from '../../../../services/exam.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-exam',
@@ -24,10 +27,17 @@ export class ExamsComponent {
 
   newExam = signal({ subject: '', name: '', date: '', time: '', questions: '', class: '', examType: '', duration: '' });
   exams: any[] = [];
-
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef, private datePipe: DatePipe) {
+  constructor(
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef,
+    private datePipe: DatePipe,
+    private examService: ExamService 
+  ) {
     this.loadData();
-    this.loadExamsFromLocalStorage();
+    this.examService.exams$.subscribe(exams => {
+      this.exams = exams;
+      this.updateFilteredExams();
+    });
   }
 
   loadData() {
@@ -35,17 +45,6 @@ export class ExamsComponent {
       this.subjects.set(data.subjects);
       this.filteredSubjects.set(data.subjects);
     });
-  }
-
-  loadExamsFromLocalStorage() {
-    const savedExams = localStorage.getItem('exams');
-    if (savedExams) {
-      this.exams = JSON.parse(savedExams);
-    }
-  }
-
-  saveExamsToLocalStorage() {
-    localStorage.setItem('exams', JSON.stringify(this.exams));
   }
 
   goToStep(stepNumber: number) {
@@ -58,34 +57,53 @@ export class ExamsComponent {
   saveExamAndGoToStep5(event: Event) {
     event.preventDefault();
     const examData = this.newExam();
-
-    if (!examData.subject || !examData.name || !examData.date || !examData.time || !examData.questions ||
-        !examData.class || !examData.examType || !examData.duration) {
-      alert("يرجى ملء جميع الحقول!");
+  
+    if (!this.isExamDataValid(examData)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'خطأ',
+        text: 'يرجى ملء جميع الحقول!',
+        confirmButtonText: 'حسناً'
+      });
       return;
     }
-
+  
+    const newExam = this.prepareExamData(examData);
+    this.examService.addExam(newExam);
+  
+    Swal.fire({
+      icon: 'success',
+      title: 'تم حفظ الاختبار بنجاح',
+      confirmButtonText: 'حسناً'
+    });
+  
+    this.resetForm();
+  }
+  
+  private isExamDataValid(examData: any): boolean {
+    return examData.subject && examData.name && examData.date && examData.time &&
+           examData.questions && examData.class && examData.examType && examData.duration;
+  }
+  
+  private prepareExamData(examData: any): any {
     const formattedDate = this.datePipe.transform(examData.date, 'yyyy-MM-dd');
-
     const timeParts = examData.time.split(':');
     const hours = parseInt(timeParts[0], 10);
     const minutes = parseInt(timeParts[1], 10);
     const timeDate = new Date();
     timeDate.setHours(hours, minutes, 0, 0);
-
     const formattedTime = this.datePipe.transform(timeDate, 'hh:mm a');
-
-    this.exams.push({
+  
+    return {
       id: this.exams.length + 1,
       ...examData,
       date: formattedDate,
       time: formattedTime
-    });
-
-    this.saveExamsToLocalStorage();
-    this.updateFilteredExams();
+    };
+  }
+  
+  private resetForm() {
     this.newExam.set({ subject: '', name: '', date: '', time: '', questions: '', class: '', examType: '', duration: '' });
-    alert("تم حفظ الاختبار بنجاح!");
     this.goToStep(1);
     this.cdr.detectChanges();
   }
@@ -97,7 +115,6 @@ export class ExamsComponent {
       )
     );
   }
-
   filterSubjects() {
     this.filteredSubjects.set(
       this.subjects().filter(subject =>
@@ -105,7 +122,7 @@ export class ExamsComponent {
       )
     );
   }
-
+ 
   selectSubject(subject: any) {
     this.selectedSubject.set(subject.name);
     this.goToStep(4);
@@ -122,20 +139,20 @@ export class ExamsComponent {
 
     doc.addFont('assets/fonts/Amiri-Regular.ttf', 'Amiri', 'normal');
     doc.setFont('Amiri');
-
+  
     doc.setFontSize(18);
-    doc.text('تفاصيل الاختبار', 10, 10);
-
+    doc.text('تفاصيل الاختبار', doc.internal.pageSize.width - 20, 10, { align: 'center' });
+  
     doc.setFontSize(12);
-    doc.text(`المادة: ${exam.subject}`, 10, 20);
-    doc.text(`اسم الاختبار: ${exam.name}`, 10, 30);
-    doc.text(`التاريخ: ${exam.date}`, 10, 40);
-    doc.text(`الوقت: ${exam.time}`, 10, 50);
-    doc.text(`الصف: ${exam.class}`, 10, 60);
-    doc.text(`نوع الاختبار: ${exam.examType === 'weekly' ? 'أسبوعي' : 'شهري'}`, 10, 70);
-    doc.text(`المدة: ${exam.duration} دقيقة`, 10, 80);
-    doc.text(`الأسئلة: ${exam.questions}`, 10, 90);
-
+    doc.text(`المادة: ${exam.subject}`, doc.internal.pageSize.width - 20, 20, { align: 'right' });
+    doc.text(`اسم الاختبار: ${exam.name}`, doc.internal.pageSize.width - 20, 30, { align: 'right' });
+    doc.text(`التاريخ: ${exam.date}`, doc.internal.pageSize.width - 20, 40, { align: 'right' });
+    doc.text(`الوقت: ${exam.time}`, doc.internal.pageSize.width - 20, 50, { align: 'right' });
+    doc.text(`الصف: ${exam.class}`, doc.internal.pageSize.width - 20, 60, { align: 'right' });
+    doc.text(`نوع الاختبار: ${exam.examType === 'weekly' ? 'أسبوعي' : 'شهري'}`, doc.internal.pageSize.width - 20, 70, { align: 'right' });
+    doc.text(`المدة: ${exam.duration} دقيقة`, doc.internal.pageSize.width - 20, 80, { align: 'right' });
+    doc.text(`الأسئلة: ${exam.questions}`, doc.internal.pageSize.width - 20, 90, { align: 'right' });
+  
     doc.save(`exam_${exam.id}.pdf`);
   }
 
@@ -147,13 +164,41 @@ export class ExamsComponent {
     this.filteredSubjects.set(this.subjects());
   }
 
+  private subjectColors: { [key: string]: string } = {
+    'اللغة العربية': 'white',
+    'اللغة الإنجليزية': 'blue',
+    'الرياضيات': 'red',
+    'العلوم': 'green'
+  };
+  
   getSubjectClass(subject: string): string {
-    const subjectColors: { [key: string]: string } = {
-      'اللغة العربية': 'white',
-      'اللغة الإنجليزية': 'blue',
-      'الرياضيات': 'red',
-      'العلوم': 'green'
-    };
-    return subjectColors[subject] || 'default-class';
+    return this.subjectColors[subject] || 'default-class';
   }
+  
+  confirmDeleteExam(exam: any) {
+    Swal.fire({
+      title: 'هل أنت متأكد؟',
+      text: 'لن تتمكن من استعادة هذا الامتحان!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'نعم، احذفه',
+      cancelButtonText: 'إلغاء',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.examService.deleteExam(exam.id);
+        this.showDeleteSuccessMessage();
+      }
+    });
+  }
+  
+  private showDeleteSuccessMessage() {
+    Swal.fire({
+      title: 'تم حذف الامتحان بنجاح.',
+      icon: 'success',
+      confirmButtonText: 'حسناً'
+    });
+  }
+
 }

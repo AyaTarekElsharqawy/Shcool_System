@@ -8,15 +8,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./confirm-delete-modal.component.css']
 })
 export class ConfirmDeleteModalComponent {
-  @Input() itemType: string = ''; // استقبال نوع العنصر
+  @Input() itemType: string = ''; 
 
   constructor(public activeModal: NgbActiveModal) {}
 
   confirm() {
-    this.activeModal.close(true); // تأكيد الحذف
+    this.activeModal.close(true); 
   }
 
   dismiss() {
-    this.activeModal.dismiss(); // إلغاء الحذف
+    this.activeModal.dismiss(); 
   }
 }

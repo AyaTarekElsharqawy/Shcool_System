@@ -16,10 +16,10 @@ import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-del
 export class TeacherComponent {
   searchQuery: string = '';
   filteredUsers: any[] = [];
-  users: any[] = TEACHERS; // بيانات المعلمين الوهمية
+  users: any[] = TEACHERS; 
 
   constructor(private fb: FormBuilder, private modalService: NgbModal) {
-    this.filteredUsers = [...this.users]; // تحديث القائمة عند بدء التشغيل
+    this.filteredUsers = [...this.users];
   }
 
   openModal(user: any = null) {

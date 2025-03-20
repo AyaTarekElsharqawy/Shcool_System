@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class TeacherFormComponent {
   teacherForm: FormGroup;
-  imagePreview: string = 'assets/default-avatar.png'; // الصورة الافتراضية
+  imagePreview: string = 'assets/default-avatar.png'; 
 
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.teacherForm = this.fb.group({
@@ -22,31 +22,27 @@ export class TeacherFormComponent {
       email: ['', [Validators.required, Validators.email]],
       degree: ['', Validators.required],
       subject: ['', Validators.required],
-      image: [null], // حقل للصورة (اختياري)
     });
   }
 
-  /** تحميل صورة المعلم */
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result as string; // تحديث عرض الصورة
+        this.imagePreview = reader.result as string; 
         this.teacherForm.patchValue({ image: this.imagePreview });
       };
       reader.readAsDataURL(file);
     }
   }
 
-  /** إرسال البيانات عند الحفظ */
   onSubmit() {
     if (this.teacherForm.valid) {
       this.activeModal.close(this.teacherForm.value);
     }
   }
 
-  /** إغلاق المودال */
   closeModal() {
     this.activeModal.dismiss();
   }

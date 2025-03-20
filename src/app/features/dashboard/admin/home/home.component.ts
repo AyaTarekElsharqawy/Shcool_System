@@ -10,7 +10,7 @@ import { TeacherListComponent } from "../teacher-list/teacher-list.component";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, BannerComponent, ScheduleComponent, StatisticsCardsComponent, MarqueeComponent, TeacherListComponent], // استيراد الوحدات النمطية المطلوبة هنا
+  imports: [CommonModule, BannerComponent, ScheduleComponent, StatisticsCardsComponent, MarqueeComponent, TeacherListComponent], 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })

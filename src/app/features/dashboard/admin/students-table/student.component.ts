@@ -28,21 +28,17 @@ export class StudentsTableComponent {
     );
   }
 
-  // ✅ دالة الفلترة التي ستُستخدم في `*ngFor`
   filteredStudents(): any[] {
     if (!this.searchText) {
-      return this.students; // إرجاع القائمة الكاملة إذا لم يكن هناك بحث
+      return this.students; 
     }
     return this.students.filter(student =>
       student.name.includes(this.searchText)
     );
   }
 
-  // ✅ ضبط الألوان لكل حالة لتطابق الصورة
   getStatusClass(status: string, student: any): string {
-    // ✅ تحديد الحالة النشطة فقط بناءً على البيانات القادمة من الـ API
-    const activeStatus = student.status[0]; // الحالة الأساسية التي نستخدمها
-  
+    const activeStatus = student.status[0]; 
     if (status === activeStatus) {
       switch (status) {
         case 'تم السداد': return 'badge bg-primary'; 

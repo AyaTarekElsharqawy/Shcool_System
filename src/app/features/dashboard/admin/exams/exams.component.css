@@ -1,8 +1,12 @@
 .step-container {
     text-align: center;
-    margin: 4rem auto;
-    width: 80%;
+    margin: 2rem auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .search-container {
     width: 100%;
     display: flex;
@@ -13,33 +17,25 @@
 .search-input {
     width: 100%;
     padding: 10px 15px;
-    margin-top: 4rem;
     font-size: 16px;
     border: 2px solid #ddd;
     border-radius: 25px;
     outline: none;
-    transition: 0.3s;
+    transition: border-color 0.3s ease;
     text-align: right;
-    box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
-
-}
-
-.search-input::placeholder {
-    color: #aaa;
-    font-style: italic;
+    background-color: #f9f9f9;
 }
 
 .search-input:focus {
     border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
-button
-{
-    transition: 0.3s;
 
+button {
+    transition: all 0.3s ease;
 }
-button:hover
-{
+
+button:hover {
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -51,7 +47,7 @@ button:hover
     margin-top: 4rem;
 }
 
-.subjects button, .download-btn, .back-btn {
+.subjects button {
     display: block;
     width: 100%;
     margin: 10px 0;
@@ -61,52 +57,38 @@ button:hover
     cursor: pointer;
 }
 
-.exam-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.exam-table th, .exam-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-.exam-table th {
-    background-color: #0056b3;
-    color: white;
-}
-
-.download-btn {
-    background-color: #007bff;
-    color: white;
+.blue { 
+    background-color: #509CDB4D; 
+    color: #509CDB;
     border: none;
 }
 
-.download-btn:hover {
-    background-color: #0056b3;
-}
-
-.back-btn {
-    background-color: #dc3545;
-    color: white;
+.red { 
+    background-color: #5C4E8E40; 
+    color: #5C4E8E;
     border: none;
-    margin-top: 20px;
 }
 
-.back-btn:hover {
-    background-color: #c82333;
+.white {
+    background-color: #EDBD1C42; 
+    color: #EDBD1C;
+    border: none;
 }
 
-.buttons{
+.green {
+    background-color: #E1006529;
+    color: #E10065;
+    border: none;
+}
+
+.buttons {
     display: flex;
     justify-content: center; 
     align-items: center;  
     height: 50vh; 
 }
-.buttons button
-{
+
+.buttons button {
     padding: 15px;
     width: 100%;
     margin-top: 4rem;
@@ -122,66 +104,79 @@ button:hover
     transition: 0.3s;
 }
 
-.blue { 
-    background-color: #509CDB4D; 
-    color: #509CDB;
-    border: none;
-}
-.red { 
-    background-color: #5C4E8E40; color: #5C4E8E;
-    border: none;
-}
-.white {
-     background-color: #EDBD1C42; color: #EDBD1C ;
-    border: none;
-}
-.green {
-    background-color: #E1006529;
-    color: #E10065;
-    border: none;
+.buttons button:hover {
+    background-color: #2980b9; 
 }
 
 .exam-table-container {
     width: 100%;
     overflow-x: auto;
     margin-top: 20px;
-    
+    margin-bottom: 30px;
+    border-radius: 10px;
 }
 
 .exam-table {
     width: 100%;
-    margin-top: 3rem;
     border-collapse: collapse;
-    font-size: 16px;
+    margin-top: 20px;
 }
 
-.exam-table thead tr {
-    background-color: #f8f8f8;
-    text-align: right;
-    font-weight: bold;
+.exam-table th {
+    background-color: #0056b3; 
+    color: white;
+    border-radius: 5px;
 }
 
 .exam-table th, .exam-table td {
+    border: 1px solid #ddd;
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
-.exam-table tbody tr:nth-child(even) {
-    background-color: #d4e6f1; 
+.exam-table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-.exam-table tbody tr:nth-child(odd) {
-    background-color: #ffffff; 
+.exam-table tr:hover {
+    background-color: #ddd;
 }
 
 .download-btn {
-    background: none;
+    padding: 8px 12px;
     border: none;
-    font-size: 18px;
+    border-radius: 5px;
     cursor: pointer;
-    color: #2980b9;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
 }
 
 .download-btn:hover {
-    color: #ffffff;
+    background-color: #45a049;
+}
+
+.back-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.back-btn:hover {
+    background-color: #c82333;
+}
+
+.kg1-class {
+    background-color: #ffcccb;
+}
+
+.kg2-class {
+    background-color: #add8e6;
+}
+
+.kg3-class {
+    background-color: #5c4e8e7c;
 }

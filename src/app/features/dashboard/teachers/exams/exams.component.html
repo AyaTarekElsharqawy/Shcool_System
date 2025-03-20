@@ -38,8 +38,9 @@
           <label for="class">الصف الدراسي:</label>
           <select id="class" [(ngModel)]="newExam().class" name="class" required>
             <option value="" disabled selected>اختر الصف</option>
-            <option value="1">Kg-1</option>
-            <option value="2">Kg-2</option>
+            <option value="Kg-1">Kg-1</option>
+            <option value="Kg-2">Kg-2</option>
+            <option value="Kg-3">Kg-3</option>
           </select>
 
           <label for="duration">مدة الاختبار:</label>
@@ -50,7 +51,7 @@
 
           <div class="form-buttons">
             <button type="button" class="back-btn" (click)="goToStep(1)">العودة</button>
-            <button type="submit" class="save-btn" >حفظ</button>
+            <button type="submit" class="save-btn">حفظ</button>
           </div>
         </form>
       </div>
@@ -92,65 +93,46 @@
       </div>
     }
 
-    <!-- @if (step() === 5) {
-      <div class="step-container">
-        @if (selectedSubject()) {
-          <h2> جدول الامتحانات لـ - {{ selectedSubject() }} ({{ selectedExamType() === 'weekly' ? 'أسبوعي' : 'شهري' }}) </h2>
-        }
-        
-        @if (filteredExams().length > 0) {
-          <div class="exam-table-container">
-              <table class="exam-table">
-                <thead>
-                  <tr>
-                    <th>اليوم</th>
-                    <th>الساعة</th>
-                    <th>تحميل</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (exam of filteredExams(); track exam.id) {
-                    <tr>
-                      <td>{{ exam.date }}</td>
-                      <td>{{ exam.time }}</td>
-                      <td><button (click)="downloadExam(exam)">تحميل</button></td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
-          </div>
-        } @else {
-          <p> لا يوجد امتحانات لهذه المادة. </p>
-        }        
-        <button class="back-btn" (click)="goToStep(1)">العودة</button>
-      </div>
-    } -->
     @if (step() === 5) {
       <div class="step-container">
         @if (selectedSubject()) {
-          <h2> جدول الامتحانات لـ - {{ selectedSubject() }} ({{ selectedExamType() === 'weekly' ? 'أسبوعي' : 'شهري' }}) </h2>
+          <h2> جدول امتحانات  - {{ selectedSubject() }} ({{ selectedExamType() === 'weekly' ? 'أسبوعي' : 'شهري' }}) </h2>
         }
         
         @if (filteredExams().length > 0) {
           <div class="exam-table-container">
-              <table class="exam-table">
-                <thead>
+            <table class="exam-table">
+              <thead>
+                <tr>
+                  <th>الصف</th>
+                  <th>اليوم</th>
+                  <th>الساعة</th>
+                  <th>تحميل</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (exam of filteredExams(); track exam.id) {
                   <tr>
-                    <th>اليوم</th>
-                    <th>الساعة</th>
-                    <th>تحميل</th>
+                    <td [ngClass]="{'kg1-class': exam.class === 'Kg-1', 'kg2-class': exam.class === 'Kg-2','kg3-class': exam.class === 'Kg-3'}">
+                      {{ exam.class }}
+                    </td>
+                    <td>{{ exam.date }}</td>
+                    <td>{{ exam.time }}</td>
+                    <td>
+                      <button (click)="downloadExam(exam)" class="download-btn">
+                        <i class="fas fa-download"></i> تحميل
+                      </button>
+                    </td>
+                    <td>
+                      <button (click)="confirmDeleteExam(exam)" class="delete-btn">
+                        <i class="fas fa-trash"></i> حذف
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  @for (exam of filteredExams(); track exam.id) {
-                    <tr>
-                      <td>{{ exam.date }}</td>
-                      <td>{{ exam.time }}</td>
-                      <td><button (click)="downloadExam(exam)" class="download-btn">تحميل</button></td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
+                }
+              </tbody>
+            </table>
           </div>
         } @else {
           <p> لا يوجد امتحانات لهذه المادة. </p>

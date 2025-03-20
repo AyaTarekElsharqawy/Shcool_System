@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ClassCardComponent } from '../class-card/class-card.component';
 import { CommonModule } from '@angular/common';
-// import { StudentsListComponent } from '../students-list/students-list.component';
 import { Router } from '@angular/router';
 
 @Component({

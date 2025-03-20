@@ -61,7 +61,7 @@ export class StudentComponent {
       keyboard: false,
     });
   
-    modalRef.componentInstance.itemType = 'هذا الطالب'; // تمرير النص الصحيح
+    modalRef.componentInstance.itemType = 'هذا الطالب'; 
   
     modalRef.result.then(
       (confirmed) => {

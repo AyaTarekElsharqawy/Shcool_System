@@ -2,11 +2,10 @@ import { Component, Input , Output,EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-// import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-marks.component';
 
 
 @Component({
-  selector: 'admin-student-card',
+  selector: 'app-student-card',
   imports: [CommonModule, FormsModule],
   templateUrl: './student-card.component.html',
   styleUrls: ['./student-card.component.css'],

@@ -1,4 +1,3 @@
-/* تنسيقات عامة */
 .container {
   max-width: 1200px;
   margin: auto;
@@ -6,7 +5,6 @@
   font-family: 'Arial', sans-serif;
 }
 
-/* زر الإضافة */
 .custom-button {
   background: #509CDB;
   color: white;
@@ -22,7 +20,6 @@
   background: #3a7bb5;
 }
 
-/* تنسيق البحث */
 .search-box {
   width: 70%;
   background-color: #E0E0E0;
@@ -32,7 +29,6 @@
   font-size: 16px;
 }
 
-/* الجدول */
 .table {
   width: 100%;
   margin-top: 20px;
@@ -59,7 +55,6 @@
   background-color: #f1f1f1;
 }
 
-/* تنسيق أزرار التعديل والحذف */
 .btn-warning {
   background-color: #ffc107 !important;
   border-color: #ffc107 !important;
@@ -86,17 +81,15 @@
   background-color: #c82333 !important;
 }
 
-/* تحسين عرض الصورة داخل الجدول */
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  margin: auto; /* ✅ يجعل الصورة في منتصف الخلية */
+  margin: auto; 
 }
 
-/* صورة افتراضية */
 .default-avatar {
   width: 40px;
   height: 40px;
@@ -110,7 +103,6 @@
   margin: auto;
 }
 
-/* تنسيق شاشة "لا يوجد طلاب" */
 .no-users-container {
   width: 952px;
   height: 419px;
@@ -137,8 +129,8 @@
   background-color: #FCFAFA;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* توسيط عمودي */
-  align-items: center; /* توسيط أفقي */
-  text-align: center; /* توسيط النص داخل العناصر */
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
   position: relative;
 }

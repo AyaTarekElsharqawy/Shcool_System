@@ -21,24 +21,22 @@ export class AttendanceComponent {
     { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
     { id: 2, name: "محمد أحمد", email: "mohamed@gmail.com", image: "assets/profile.png", class: "KG2", present: false },
     { id: 3, name: "علي حسن", email: "ali@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 4, name: "مريم خالد", email: "mariam@gmail.com", image: "assets/profile.png", class: "KG3", present: false },
-    { id: 5, name: "فاطمة علي", email: "fatma@gmail.com", image: "assets/profile.png", class: "KG2", present: false }
+    { id: 8, name: "حسام خالد", email: "hassan@gmail.com", image: "assets/profile.png", class: "KG2", present: false },
+    { id: 7, name: " ياسر محمود", email: "yasser@gmail.com", image: "assets/profile.png", class: "KG3", present: false },
+    { id: 6, name: " عمر سعيد", email: "omar@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
   ];
-
   filteredStudents = [...this.students];
 
   constructor(private attendanceService: AttendanceService) {
     this.loadAttendance();
   }
 
-  // تحديث الحضور عند الضغط على الطالب
   toggleAttendance(student: any) {
     student.present = !student.present;
     this.attendanceService.setAttendance(student.id, student.present);
     this.updateFilteredStudents();
   }
 
-  // تحديث الطلاب عند تغيير الفصل
   updateFilteredStudents() {
     this.filteredStudents = this.students.filter(student =>
       this.selectedClass ? student.class === this.selectedClass : true
@@ -46,7 +44,6 @@ export class AttendanceComponent {
     console.log("📌 الطلاب بعد التصفية:", this.filteredStudents);
   }
 
-  // تحميل بيانات الحضور من الخدمة
   loadAttendance() {
     this.attendanceService.attendance$.subscribe(attendance => {
       this.students.forEach(student => {

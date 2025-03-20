@@ -8,7 +8,6 @@
       </select>
     </div>
   </div>
-<<<<<<< HEAD
   <div class="row">
     @for (student of presentStudents; track $index) {
       <div class="col-6 col-sm-4 col-md-3 col-lg-2">
@@ -16,33 +15,24 @@
           [studentImage]="student.image"
           [studentName]="student.name"
           [studentID]="student.studentid"
-          [studentEmail]="student.email">
+          [studentEmail]="student.email" 
+          (studentSelected)="onStudentSelected($event)">
         </app-student-card>
-=======
-  <div class=" row ">
-    @for(student of students; track $index){
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 ">
-        <!-- <app-student-card ></app-student-card> -->
-        <admin-student-card [studentImage]="student.image" [studentName]="student.name" [studentID]="student.studentid" (studentSelected)="onStudentSelected($event)"></admin-student-card>
->>>>>>> origin/Salma
       </div>
     }
   </div>
 </div>
 
 
-<!-- المودال -->
 <div class="modal fade" id="studentModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content custom-modal animate-modal">
 
-      <!-- الهيدر -->
       <div class="modal-header custom-header">
         <div class="student-info">
           <span class="student-name">{{ selectedStudent?.name }}  </span>
           <span class="student-id">{{ selectedStudent?.studentid }}</span>
         </div>
-        <!-- شريط تحديد الشهر -->
 <div class="month-selector">
   <button class="btn btn-light" (click)="previousMonth()">
     <i class="bi bi-chevron-right"></i>

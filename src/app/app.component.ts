@@ -20,7 +20,7 @@ export class AppComponent {
     { title: 'المعلمون', path: '/admin/teachers', icon: 'fa-solid fa-user-tie' },
     { title: 'الطلاب', path: '/admin/students', icon: 'fa-solid fa-graduation-cap' },
     { title: 'الحضور', path: '/admin/attendance', icon: 'fa-regular fa-circle-check' },
-    { title: 'الامتحانات', path: '/admin/Exams', icon: 'fa-regular fa-pen-to-square' },
+    { title: 'الامتحانات', path: '/admin/exams', icon: 'fa-regular fa-pen-to-square' },
     { title: 'الاشتراكات والأجور', path: '/admin/fees', icon: 'fa-solid fa-sack-dollar' },
     { title: 'التعليمات والشكاوى', path: '/admin/complaints', icon: 'fa-solid fa-message' }
   ];
@@ -30,7 +30,6 @@ export class AppComponent {
     { title: 'الحضور', path: '/teacher/attendance', icon: 'fa-regular fa-circle-check' },
     { title: 'الامتحانات', path: '/teacher/exams', icon: 'fa-regular fa-pen-to-square' },
     { title: 'الشروط والتعليمات', path: '/teacher/instructions', icon: 'fa-solid fa-message' },
-    {title:'اضافه درجه الامتحان',path:'/teacher/add-exam',icon:'fa-solid fa-plus'}
 
   ];
   constructor(private router: Router) {}

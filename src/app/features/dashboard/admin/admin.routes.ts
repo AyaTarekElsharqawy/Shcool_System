@@ -20,7 +20,7 @@ export const adminRoutes: Routes = [
         component: HomeComponent,
     },
     {
-        path:'Exams',
+        path:'exams',
         component:ExamsComponent
     },
     { path: 'students', component: StudentComponent },
