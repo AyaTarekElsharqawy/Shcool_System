@@ -16,10 +16,10 @@ export class AppComponent {
   links: { title: string; path: string; icon: string }[] = [];
   adminLinks = [
     { title: 'الصفحة الرئيسية', path: '/admin/home', icon: 'fa-solid fa-house' },
-    { title: 'الفصول', path: '/admin/classes', icon: 'fa-solid fa-book' },
+    { title: 'الفصول', path: '/admin/classes-list', icon: 'fa-solid fa-book' },
     { title: 'المعلمون', path: '/admin/teachers', icon: 'fa-solid fa-user-tie' },
     { title: 'الطلاب', path: '/admin/students', icon: 'fa-solid fa-graduation-cap' },
-    { title: 'الحضور', path: '/admin/attendance', icon: 'fa-regular fa-circle-check' },
+    { title: 'الحضور', path: '/admin/students-list', icon: 'fa-regular fa-circle-check' },
     { title: 'الامتحانات', path: '/admin/Exams', icon: 'fa-regular fa-pen-to-square' },
     { title: 'الاشتراكات والأجور', path: '/admin/fees', icon: 'fa-solid fa-sack-dollar' },
     { title: 'التعليمات والشكاوى', path: '/admin/complaints', icon: 'fa-solid fa-message' }
