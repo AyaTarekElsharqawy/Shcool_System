@@ -1,11 +1,10 @@
 import { Component, Input, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
 @Component({
   selector: 'app-class-card',
-  imports: [CommonModule,RouterLink,RouterLinkActive],
+  imports: [CommonModule],
   templateUrl: './class-card.component.html',
   styleUrl: './class-card.component.css'
 })

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink,RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-student-card',
-  imports: [CommonModule,RouterLink,RouterLinkActive],
+  imports: [CommonModule],
   templateUrl: './student-card.component.html',
   styleUrl: './student-card.component.css'
 })
