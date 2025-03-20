@@ -9,6 +9,8 @@ import { SubscriptionsAndSalariesComponent } from './subscriptions-and-salaries/
 import { ComplaintsComponent } from './complaints/complaints.component';
 import { TeachersTableComponent } from './teachers-table/teachers-table.component';
 import { StudentsTableComponent } from './students-table/student.component';
+import { ClassCardComponent } from './class-card/class-card.component';
+import { StudentCardComponent } from './student-card/student-card.component';
 
 export const adminRoutes: Routes = [
     { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
@@ -31,5 +33,12 @@ export const adminRoutes: Routes = [
     {path: 'complaints',component:ComplaintsComponent},
     {path: 'teachersFees',component:TeachersTableComponent},
     {path: 'studentsFees',component:StudentsTableComponent},
-    
+    {
+        path: 'class-card',
+        component: ClassCardComponent
+      },
+    {
+        path:'student-card',
+        component: StudentCardComponent
+    }
 ];
