@@ -7,7 +7,6 @@ import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import Swal from 'sweetalert2';
 import { ExamService } from '../../../../services/exam.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-exam',
