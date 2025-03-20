@@ -3,11 +3,11 @@ import { Input , Output,EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-marks.component';
+// import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-marks.component';
 
 @Component({
   selector: 'admin-student-card',
-  imports: [CommonModule, FormsModule, AddExamMarksComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './student-card.component.html',
   styleUrl: './student-card.component.css'
 })
@@ -159,11 +159,7 @@ export class StudentCardComponent {
     }
   ];
 
-  // selectedStudent!: string;
 
-  // setSelectedStudent(id: string) {
-  //   this.selectedStudent = id;
-  // }
 
   constructor(private router:Router){}
 
@@ -181,11 +177,7 @@ export class StudentCardComponent {
     });
   }
 
-  // handleRedirectToAddMarks(id:string)
-  // {
-  //  this.router.navigate(['/teacher/add-exam',id])
 
-  // }
 
 
 }

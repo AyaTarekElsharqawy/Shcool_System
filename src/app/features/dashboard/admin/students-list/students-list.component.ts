@@ -11,7 +11,6 @@ import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-ma
   styleUrl: './students-list.component.css'
 })
 export class StudentsListComponent {
-
    students = [
     {
       "id": 1,
@@ -159,6 +158,7 @@ export class StudentsListComponent {
     }
   ];
 
+
   selectedStudent: any = null;
 
   onStudentSelected(student: any) {
@@ -184,4 +184,7 @@ export class StudentsListComponent {
   get currentMonth(): string {
     return this.currentDate.toLocaleString('ar-EG', { month: 'long' });
   }
+
+
+
 }
