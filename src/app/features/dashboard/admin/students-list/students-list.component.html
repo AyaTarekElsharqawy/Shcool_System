@@ -1,17 +1,23 @@
-
-<div class="container  elemntscontainer ">
+<div class="container elemntscontainer">
   <div class="row align-items-center mb-3">
-    <div class="col text-end ">
-      <button class="top-right-btn">KG-1</button>
+    <div class="col text-end">
+      <label for="classSelect" class="form-label">اختر الفصل:</label>
+      <select id="classSelect" [(ngModel)]="selectedClass" (change)="updatePresentStudents()" class="form-select">
+        <option value="">كل الفصول</option>
+        <option *ngFor="let class of classes" [value]="class">{{ class }}</option>
+      </select>
     </div>
   </div>
-  <div class=" row ">
-    @for(student of students; track $index){
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 ">
-        <!-- <app-student-card ></app-student-card> -->
-        <app-student-card [studentImage]="student.image" [studentName]="student.name" [studentID]="student.studentid"></app-student-card>
+  <div class="row">
+    @for (student of presentStudents; track $index) {
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+        <app-student-card
+          [studentImage]="student.image"
+          [studentName]="student.name"
+          [studentID]="student.studentid"
+          [studentEmail]="student.email">
+        </app-student-card>
       </div>
     }
-
   </div>
 </div>

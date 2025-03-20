@@ -16,4 +16,6 @@ import { SubjectGradesComponent } from '../subject-grades/subject-grades.compone
 })
 export class HomeComponent {
 
+  constructor(private dataService: DataService) {}
+
 }

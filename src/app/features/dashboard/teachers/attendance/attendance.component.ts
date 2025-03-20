@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AttendanceService } from '../../../../services/attendance.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-attendance',
@@ -10,47 +11,48 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule]
 })
 export class AttendanceComponent {
+  selectedDay: string = '';
+  selectedClass: string = '';
+
+  days: string[] = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+  classes: string[] = ['KG1', 'KG2', 'KG3'];
+
   students = [
     { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 1, name: "أحمد محمد", email: "ahmed@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    
     { id: 2, name: "محمد أحمد", email: "mohamed@gmail.com", image: "assets/profile.png", class: "KG2", present: false },
-    { id: 3, name: "علي يوسف", email: "ali@gmail.com", image: "assets/profile.png", class: "KG3", present: false },
-    { id: 4, name: "سارة حسن", email: "sara@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 5, name: "محمود عمر", email: "mahmoud@gmail.com", image: "assets/profile.png", class: "KG2", present: false },
-    { id: 6, name: "نور خالد", email: "noor@gmail.com", image: "assets/profile.png", class: "KG3", present: false },
-    { id: 7, name: "ياسين عبد الله", email: "yassin@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
-    { id: 8, name: "ليلى عمر", email: "laila@gmail.com", image: "assets/profile.png", class: "KG2", present: false }
+    { id: 3, name: "علي حسن", email: "ali@gmail.com", image: "assets/profile.png", class: "KG1", present: false },
+    { id: 4, name: "مريم خالد", email: "mariam@gmail.com", image: "assets/profile.png", class: "KG3", present: false },
+    { id: 5, name: "فاطمة علي", email: "fatma@gmail.com", image: "assets/profile.png", class: "KG2", present: false }
   ];
 
-  classes = ["KG1", "KG2", "KG3"];
-  days = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"];
+  filteredStudents = [...this.students];
 
-  selectedClass = "KG1"; // يبدأ بقيمة افتراضية
-  selectedDay = "السبت";
-
-  get filteredStudents() {
-    return this.students.filter(student => student.class === this.selectedClass);
+  constructor(private attendanceService: AttendanceService) {
+    this.loadAttendance();
   }
 
+  // تحديث الحضور عند الضغط على الطالب
   toggleAttendance(student: any) {
     student.present = !student.present;
+    this.attendanceService.setAttendance(student.id, student.present);
+    this.updateFilteredStudents();
+  }
+
+  // تحديث الطلاب عند تغيير الفصل
+  updateFilteredStudents() {
+    this.filteredStudents = this.students.filter(student =>
+      this.selectedClass ? student.class === this.selectedClass : true
+    );
+    console.log("📌 الطلاب بعد التصفية:", this.filteredStudents);
+  }
+
+  // تحميل بيانات الحضور من الخدمة
+  loadAttendance() {
+    this.attendanceService.attendance$.subscribe(attendance => {
+      this.students.forEach(student => {
+        student.present = attendance[student.id] || false;
+      });
+      this.updateFilteredStudents();
+    });
   }
 }

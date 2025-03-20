@@ -16,4 +16,7 @@ import { TeacherListComponent } from "../teacher-list/teacher-list.component";
 })
 export class HomeComponent {
 
+  constructor(private dataService: DataService) {}
+
+
 }

@@ -8,4 +8,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './subscriptions-and-salaries.component.html',
   styleUrls: ['./subscriptions-and-salaries.component.css']
 })
-export class SubscriptionsAndSalariesComponent { }
+export class SubscriptionsAndSalariesComponent { 
+
+
+}
