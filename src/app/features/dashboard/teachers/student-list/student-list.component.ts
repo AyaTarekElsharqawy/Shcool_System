@@ -1,16 +1,13 @@
-import { Component, Input , Output,EventEmitter} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-
-
+import { Component } from '@angular/core';
+import { AddExamMarksComponent } from '../add-exam-marks/add-exam-marks.component';
+import { StudentCardComponent } from '../student-card/student-card.component';
 @Component({
-  selector: 'app-student-card',
-  imports: [CommonModule, FormsModule],
-  templateUrl: './student-card.component.html',
-  styleUrls: ['./student-card.component.css'],
+  selector: 'app-student-list',
+  imports: [AddExamMarksComponent,StudentCardComponent],
+  templateUrl: './student-list.component.html',
+  styleUrl: './student-list.component.css'
 })
-export class StudentCardComponent {
+export class StudentListComponent {
   students = [
     {
       "id": 1,
@@ -157,10 +154,31 @@ export class StudentCardComponent {
       "studentid": "547408"
     }
   ];
-  constructor(private router:Router){}
+  selectedStudent: any = null;
 
-  @Input() studentImage!: string;
-  @Input() studentName!: string;
-  @Input() studentID!: string;
-  @Input() studentEmail!: string;
+  onStudentSelected(student: any) {
+    this.selectedStudent = student;
+  }
+  isOpen = false;
+
+  toggleForm() {
+    this.isOpen = !this.isOpen;
+  }
+  currentDate: Date = new Date();
+
+  previousMonth() {
+    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    this.currentDate = new Date(this.currentDate);
+  }
+
+  nextMonth() {
+    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    this.currentDate = new Date(this.currentDate);
+  }
+
+  get currentMonth(): string {
+    return this.currentDate.toLocaleString('ar-EG', { month: 'long' });
+  }
+
+
 }

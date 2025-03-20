@@ -15,8 +15,7 @@
           [studentImage]="student.image"
           [studentName]="student.name"
           [studentID]="student.studentid"
-          [studentEmail]="student.email" 
-          (studentSelected)="onStudentSelected($event)">
+          [studentEmail]="student.email">
         </app-student-card>
       </div>
     }
@@ -24,33 +23,3 @@
 </div>
 
 
-<div class="modal fade" id="studentModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content custom-modal animate-modal">
-
-      <div class="modal-header custom-header">
-        <div class="student-info">
-          <span class="student-name">{{ selectedStudent?.name }}  </span>
-          <span class="student-id">{{ selectedStudent?.studentid }}</span>
-        </div>
-<div class="month-selector">
-  <button class="btn btn-light" (click)="previousMonth()">
-    <i class="bi bi-chevron-right"></i>
-
-  </button>
-  <span>{{ currentMonth }}</span>
-  <button class="btn btn-light" (click)="nextMonth()">
-    <i class="bi bi-chevron-left"></i>
-  </button>
-</div>
-
-        <button class="btn check-btn"><i class="bi bi-check-circle-fill"></i></button>
-
-      </div>
-      <div class="modal-body">
-        <app-add-exam-marks [studentID]="selectedStudent"></app-add-exam-marks>
-      </div>
-
-    </div>
-  </div>
-</div>

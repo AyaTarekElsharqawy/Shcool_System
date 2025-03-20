@@ -1,14 +1,11 @@
-import { Component, Input , Output,EventEmitter} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import{Input,Output,EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-
-
 @Component({
   selector: 'app-student-card',
-  imports: [CommonModule, FormsModule],
+  imports: [],
   templateUrl: './student-card.component.html',
-  styleUrls: ['./student-card.component.css'],
+  styleUrl: './student-card.component.css'
 })
 export class StudentCardComponent {
   students = [
@@ -157,10 +154,23 @@ export class StudentCardComponent {
       "studentid": "547408"
     }
   ];
+
+
+
   constructor(private router:Router){}
 
   @Input() studentImage!: string;
   @Input() studentName!: string;
   @Input() studentID!: string;
-  @Input() studentEmail!: string;
+
+  @Output() studentSelected = new EventEmitter<any>();
+
+
+  selectStudent() {
+    this.studentSelected.emit({
+      name: this.studentName,
+      studentid: this.studentID
+    });
+  }
+
 }
