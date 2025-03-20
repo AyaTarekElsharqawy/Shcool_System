@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from '../../../../services/attendance.service';
 import { CommonModule } from '@angular/common';
 import { StudentCardComponent } from '../student-card/student-card.component';
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { AddExamMarksComponent } from '../../teachers/add-exam-marks/add-exam-marks.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-students-list',
   standalone: true,
-  imports: [CommonModule,StudentCardComponent,AddExamMarksComponent,FormsModule],
+  imports: [CommonModule,StudentCardComponent,FormsModule],
   templateUrl: './students-list.component.html',
   styleUrls: ['./students-list.component.css'],
 })
