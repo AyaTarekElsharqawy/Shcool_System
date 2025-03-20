@@ -33,4 +33,3 @@ export const adminRoutes: Routes = [
     {path: 'studentsFees',component:StudentsTableComponent},
     
 ];
-
