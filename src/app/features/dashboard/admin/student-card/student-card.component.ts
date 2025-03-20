@@ -167,15 +167,7 @@ export class StudentCardComponent {
   @Input() studentName!: string;
   @Input() studentID!: string;
 
-  @Output() studentSelected = new EventEmitter<any>();
-
-
-  selectStudent() {
-    this.studentSelected.emit({
-      name: this.studentName,
-      studentid: this.studentID
-    });
-  }
+  
 
 
 

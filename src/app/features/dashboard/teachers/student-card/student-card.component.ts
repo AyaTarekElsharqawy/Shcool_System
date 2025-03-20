@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { StudentCardComponent } from '../student-card/student-card.component';
-
+import{Input,Output,EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'admin-students-list',
-  imports: [CommonModule,StudentCardComponent],
-  templateUrl: './students-list.component.html',
-  styleUrl: './students-list.component.css'
+  selector: 'app-student-card',
+  imports: [],
+  templateUrl: './student-card.component.html',
+  styleUrl: './student-card.component.css'
 })
-export class StudentsListComponent {
-   students = [
+export class StudentCardComponent {
+  students = [
     {
       "id": 1,
       "name": "أحمد محمد علي",
@@ -158,5 +157,20 @@ export class StudentsListComponent {
 
 
 
+  constructor(private router:Router){}
+
+  @Input() studentImage!: string;
+  @Input() studentName!: string;
+  @Input() studentID!: string;
+
+  @Output() studentSelected = new EventEmitter<any>();
+
+
+  selectStudent() {
+    this.studentSelected.emit({
+      name: this.studentName,
+      studentid: this.studentID
+    });
+  }
 
 }

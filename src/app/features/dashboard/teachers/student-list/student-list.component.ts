@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AddExamMarksComponent } from '../add-exam-marks/add-exam-marks.component';
 import { StudentCardComponent } from '../student-card/student-card.component';
-
 @Component({
-  selector: 'admin-students-list',
-  imports: [CommonModule,StudentCardComponent],
-  templateUrl: './students-list.component.html',
-  styleUrl: './students-list.component.css'
+  selector: 'app-student-list',
+  imports: [AddExamMarksComponent,StudentCardComponent],
+  templateUrl: './student-list.component.html',
+  styleUrl: './student-list.component.css'
 })
-export class StudentsListComponent {
-   students = [
+export class StudentListComponent {
+  students = [
     {
       "id": 1,
       "name": "أحمد محمد علي",
@@ -155,8 +154,31 @@ export class StudentsListComponent {
       "studentid": "547408"
     }
   ];
+  selectedStudent: any = null;
 
+  onStudentSelected(student: any) {
+    this.selectedStudent = student;
+  }
+  isOpen = false;
 
+  toggleForm() {
+    this.isOpen = !this.isOpen;
+  }
+  currentDate: Date = new Date();
+
+  previousMonth() {
+    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    this.currentDate = new Date(this.currentDate);
+  }
+
+  nextMonth() {
+    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    this.currentDate = new Date(this.currentDate);
+  }
+
+  get currentMonth(): string {
+    return this.currentDate.toLocaleString('ar-EG', { month: 'long' });
+  }
 
 
 }

@@ -1,8 +1,6 @@
-<div class="student-card"   data-bs-toggle="modal" data-bs-target="#studentModal">
+<div class="student-card" (click)="selectStudent()"  data-bs-toggle="modal" data-bs-target="#studentModal">
   <img [src]="studentImage" [alt]="studentName" class="student-image">
   <h3>{{ studentName }}</h3>
   <span class="student-id">{{ studentID }}</span>
-
-
 </div>
 
