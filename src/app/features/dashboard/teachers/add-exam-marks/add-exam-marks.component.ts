@@ -199,13 +199,31 @@ export class AddExamMarksComponent{
     }
   }
 
+ 
+
+  previousStudentID: any = null;
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['studentID'] && changes['studentID'].currentValue) {
+      if (this.previousStudentID !== this.studentID.studentid) {
+
+        this.resetMarks();
+      }
+
       this.getMarks();
+
+      this.previousStudentID = this.studentID.studentid;
     }
   }
 
-
+  resetMarks() {
+    this.subjects = [
+      { name: 'اللغة العربية', marks: 0 },
+      { name: 'اللغة الإنجليزية', marks: 0 },
+      { name: 'التربية الدينية', marks: 0 },
+      { name: 'العلوم', marks: 0 }
+    ];
+  }
 
 
 
