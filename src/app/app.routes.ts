@@ -7,6 +7,4 @@ export const routes: Routes = [
   { path: '', redirectTo: 'admin/home', pathMatch: 'full' }, 
   { path: 'admin', children: adminRoutes }, 
   { path: 'teacher', children: teacherRoutes },
-
 ];
-;

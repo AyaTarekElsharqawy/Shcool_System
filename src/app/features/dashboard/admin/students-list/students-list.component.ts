@@ -249,7 +249,6 @@ export class StudentsListComponent  implements OnInit {
     this.presentStudents = this.students.filter(student =>
       attendance[student.id] === true && (this.selectedClass ? student.class === this.selectedClass : true)
     );
-    console.log("📌 الطلاب الحاضرين بعد التصفية:", this.presentStudents);
   }
 
   loadPresentStudents() {

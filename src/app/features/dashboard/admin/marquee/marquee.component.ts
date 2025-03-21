@@ -5,7 +5,10 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-marquee',
   standalone: true,
   templateUrl: './marquee.component.html',
-  styleUrls: ['./marquee.component.css']
+  styleUrls: ['./marquee.component.css'],
+  host: {
+    'id': 'marquee-1' 
+}
 })
 export class MarqueeComponent implements OnInit {
   newsTicker: string[] = []; 

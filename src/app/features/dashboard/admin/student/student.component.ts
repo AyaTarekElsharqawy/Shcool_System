@@ -5,27 +5,26 @@ import { StudentFormComponent } from '../student-form/student-form.component';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
-  selector: 'app-student',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css']
+    selector: 'app-student',
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule],
+    templateUrl: './student.component.html',
+    styleUrls: ['./student.component.css']
 })
 export class StudentComponent {
-  searchQuery: string = '';
-  filteredStudents: any[] = [];
-  students: any[] = [];
+    searchQuery: string = "";
+    filteredStudents: any[] = [];
+    students: any[] = [];
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal) {
-    this.filteredStudents = [...this.students];
-  }
+    constructor(private fb: FormBuilder, private modalService: NgbModal) {
+        this.filteredStudents = [...this.students];
+    }
 
-  openModal(student: any = null) {
-    const modalRef = this.modalService.open(StudentFormComponent, {
-      backdrop: 'static',
-      keyboard: false,
-    });
-
+    openModal(student: any = null) {
+        const modalRef = this.modalService.open(StudentFormComponent, {
+            backdrop: 'static',
+            keyboard: false,
+        });
     modalRef.componentInstance.studentForm = this.fb.group({
       id: [student?.id || null],
       name: [student?.name || '', Validators.required],

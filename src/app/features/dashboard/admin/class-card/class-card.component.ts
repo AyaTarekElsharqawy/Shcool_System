@@ -6,7 +6,10 @@ import { CommonModule } from '@angular/common';
   selector: 'app-class-card',
   imports: [CommonModule],
   templateUrl: './class-card.component.html',
-  styleUrl: './class-card.component.css'
+  styleUrl: './class-card.component.css',
+  host:{
+    'id': 'class-card-1'
+  }
 })
 export class ClassCardComponent {
   @Input() students!: number;

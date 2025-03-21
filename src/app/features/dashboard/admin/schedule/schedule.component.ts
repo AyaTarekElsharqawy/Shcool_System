@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   selector: 'app-schedule',
   imports: [NgClass],
   templateUrl: './schedule.component.html',
-  styleUrl: './schedule.component.css'
+  styleUrl: './schedule.component.css',
+  host: {
+    'id': 'schedule-1' 
+}
 })
 export class ScheduleComponent {
   schedule: any[] = []; 

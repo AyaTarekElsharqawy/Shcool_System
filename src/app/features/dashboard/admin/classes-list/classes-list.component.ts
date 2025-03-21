@@ -7,7 +7,10 @@ import { Router } from '@angular/router';
   selector: 'app-classes-list',
   imports: [ClassCardComponent,CommonModule],
   templateUrl: './classes-list.component.html',
-  styleUrl: './classes-list.component.css'
+  styleUrl: './classes-list.component.css',
+  host:{
+    'id': 'classes-list-1' 
+  }
 })
 export class ClassesListComponent {
   classes=[
