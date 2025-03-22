@@ -207,7 +207,6 @@ export class ExamsComponent {
     });
   }
   viewExam(exam: any) {
-    // تقسيم الأسئلة إلى أسطر منفصلة
     const questionsFormatted = exam.questions.split('\n').map((q: string, index: number) => 
       `<div style="margin-bottom: 5px;">${index + 1}. ${q.trim()}</div>`
     ).join('');

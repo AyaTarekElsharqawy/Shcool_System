@@ -2,6 +2,7 @@ import { Component,Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SimpleChanges } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-exam-marks',
@@ -172,9 +173,18 @@ export class AddExamMarksComponent{
     if (this.studentID && this.studentID.studentid) {
       const key = `marks_${this.studentID.studentid}`;
       localStorage.setItem(key, JSON.stringify(this.subjects));
-      alert('تم حفظ الدرجات بنجاح!');
+       Swal.fire({
+            icon: 'success',
+            title: 'تم حفظ الدرجات بنجاح!',
+            confirmButtonText: 'حسناً'
+          });
     } else {
-      alert('لم يتم تحديد الطالب بشكل صحيح!');
+      Swal.fire({
+              icon: 'error',
+              title: 'خطأ',
+              text: 'لم يتم تحديد الطالب بشكل صحيح!',
+              confirmButtonText: 'حسناً'
+            });
     }
   }
 
@@ -189,13 +199,31 @@ export class AddExamMarksComponent{
     }
   }
 
+ 
+
+  previousStudentID: any = null;
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['studentID'] && changes['studentID'].currentValue) {
+      if (this.previousStudentID !== this.studentID.studentid) {
+
+        this.resetMarks();
+      }
+
       this.getMarks();
+
+      this.previousStudentID = this.studentID.studentid;
     }
   }
 
-
+  resetMarks() {
+    this.subjects = [
+      { name: 'اللغة العربية', marks: 0 },
+      { name: 'اللغة الإنجليزية', marks: 0 },
+      { name: 'التربية الدينية', marks: 0 },
+      { name: 'العلوم', marks: 0 }
+    ];
+  }
 
 
 
