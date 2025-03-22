@@ -135,26 +135,33 @@ export class ExamsComponent {
 
   downloadExam(exam: any) {
     const doc = new jsPDF();
-
+  
     doc.addFont('assets/fonts/Amiri-Regular.ttf', 'Amiri', 'normal');
     doc.setFont('Amiri');
   
-    doc.setFontSize(18);
-    doc.text('تفاصيل الاختبار', doc.internal.pageSize.width - 20, 10, { align: 'center' });
+    doc.setFontSize(24);
+    doc.text(exam.name, doc.internal.pageSize.width - 20, 20, { align: 'right' });
   
     doc.setFontSize(12);
-    doc.text(`المادة: ${exam.subject}`, doc.internal.pageSize.width - 20, 20, { align: 'right' });
-    doc.text(`اسم الاختبار: ${exam.name}`, doc.internal.pageSize.width - 20, 30, { align: 'right' });
-    doc.text(`التاريخ: ${exam.date}`, doc.internal.pageSize.width - 20, 40, { align: 'right' });
-    doc.text(`الوقت: ${exam.time}`, doc.internal.pageSize.width - 20, 50, { align: 'right' });
-    doc.text(`الصف: ${exam.class}`, doc.internal.pageSize.width - 20, 60, { align: 'right' });
-    doc.text(`نوع الاختبار: ${exam.examType === 'weekly' ? 'أسبوعي' : 'شهري'}`, doc.internal.pageSize.width - 20, 70, { align: 'right' });
-    doc.text(`المدة: ${exam.duration} دقيقة`, doc.internal.pageSize.width - 20, 80, { align: 'right' });
-    doc.text(`الأسئلة: ${exam.questions}`, doc.internal.pageSize.width - 20, 90, { align: 'right' });
+    doc.text(`الوقت: ${exam.time}`, doc.internal.pageSize.width - 20, 30, { align: 'right' });
+    doc.text(`المدة: ${exam.duration} دقيقة`, doc.internal.pageSize.width - 20, 40, { align: 'right' });
+  
+    doc.setFontSize(20);
+    doc.text(`المادة: ${exam.subject}`, doc.internal.pageSize.width - 20, 60, { align: 'right' });
+    doc.setFontSize(12);
+    doc.text(`التاريخ: ${exam.date}`, doc.internal.pageSize.width - 20, 70, { align: 'right' });
+    doc.text(`الصف: ${exam.class}`, doc.internal.pageSize.width - 20, 80, { align: 'right' });
+  
+    doc.setFontSize(18);
+    doc.text('الأسئلة:', doc.internal.pageSize.width - 20, 100, { align: 'right' });
+    doc.setFontSize(12);
+    const questions = exam.questions.split('\n');
+    questions.forEach((q: string, index: number) => {
+      doc.text(`${index + 1}. ${q.trim()}`, doc.internal.pageSize.width - 20, 110 + (index * 10), { align: 'right' });
+    });
   
     doc.save(`exam_${exam.id}.pdf`);
   }
-
   reset() {
     this.goToStep(1);
     this.selectedSubject.set('');
@@ -199,5 +206,41 @@ export class ExamsComponent {
       confirmButtonText: 'حسناً'
     });
   }
-
+  viewExam(exam: any) {
+    // تقسيم الأسئلة إلى أسطر منفصلة
+    const questionsFormatted = exam.questions.split('\n').map((q: string, index: number) => 
+      `<div style="margin-bottom: 5px;">${index + 1}. ${q.trim()}</div>`
+    ).join('');
+  
+    Swal.fire({
+      title: 'تفاصيل الامتحان',
+      html: `
+      <div class="container">
+      <div style="text-align: right;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <div><strong>المادة:</strong> ${exam.subject}</div>
+          <div><strong>اسم الاختبار:</strong> ${exam.name}</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <div><strong>التاريخ:</strong> ${exam.date}</div>
+          <div><strong>الوقت:</strong> ${exam.time}</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <div><strong>الصف:</strong> ${exam.class}</div>
+          <div><strong>المدة:</strong> ${exam.duration} دقيقة</div>
+        </div>
+        <div style="margin-bottom: 10px;"><strong>الأسئلة:</strong></div>
+        <div style="margin-bottom: 10px;">${questionsFormatted}</div>
+      </div>
+      </div>  
+      `,
+      confirmButtonText: 'حسناً',
+      width: '70%', 
+      heightAuto: false, 
+      customClass: {
+        popup: 'custom-popup', 
+        container: 'custom-container' 
+      }
+    });
+  }
 }

@@ -4,13 +4,12 @@ import { DataService } from '../../../../services/data.service';
 import { BannerComponent } from "../banner/banner.component";
 import { ScheduleComponent } from '../schedule/schedule.component';
 import { MarqueeComponent } from '../marquee/marquee.component';
-import { TeacherListComponent } from "../teacher-list/teacher-list.component";
-import { SubjectGradesComponent } from '../subject-grades/subject-grades.component';
+
 
 @Component({
   selector: 'teacher-home',
   standalone: true,
-  imports: [CommonModule, BannerComponent, ScheduleComponent, MarqueeComponent, TeacherListComponent,SubjectGradesComponent], 
+  imports: [CommonModule, BannerComponent, ScheduleComponent, MarqueeComponent], 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
