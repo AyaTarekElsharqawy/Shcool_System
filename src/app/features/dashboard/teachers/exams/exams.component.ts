@@ -234,7 +234,7 @@ export class ExamsComponent {
       </div>  
       `,
       confirmButtonText: 'حسناً',
-      width: '70%', 
+      width: '60%', 
       heightAuto: false, 
       customClass: {
         popup: 'custom-popup', 
