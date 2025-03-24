@@ -11,6 +11,7 @@ import { TeachersTableComponent } from './teachers-table/teachers-table.componen
 import { StudentsTableComponent } from './students-table/student.component';
 import { ClassCardComponent } from './class-card/class-card.component';
 import { StudentCardComponent } from './student-card/student-card.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 export const adminRoutes: Routes = [
     { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
@@ -28,7 +29,8 @@ export const adminRoutes: Routes = [
     { path: 'teachers', component: TeacherComponent },
     { path: 'teachers/:query', component: TeacherComponent }, 
     {path: 'classes',component:ClassesListComponent},
-    {path: 'attendance',component:StudentsListComponent},
+    {path: 'attendance',component:AttendanceComponent},
+    {path: 'students-list',component:StudentsListComponent},
     {path: 'fees',component:SubscriptionsAndSalariesComponent},
     {path: 'complaints',component:ComplaintsComponent},
     {path: 'teachersFees',component:TeachersTableComponent},

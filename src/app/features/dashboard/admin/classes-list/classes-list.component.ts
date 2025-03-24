@@ -26,7 +26,7 @@ export class ClassesListComponent {
   constructor(private router: Router) {}
 
   goToStudentsList(classData: { students: number; grade: number }) {
-    this.router.navigate(['/admin/attendance'], { queryParams: { students: classData.students, grade: classData.grade } });
+    this.router.navigate(['/admin/students-list'], { queryParams: { students: classData.students, grade: classData.grade } });
   }
 
 

@@ -45,7 +45,6 @@
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
-/* أنيميشن عند الفتح */
 @keyframes slideDown {
   from {
     transform: translateY(-50px);
