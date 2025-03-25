@@ -74,7 +74,11 @@
             },
             "development": {
               "buildTarget": "shcool-system:build:development"
-            }
+            },
+            "options": {
+    "hmr": false,
+     "proxyConfig": "proxy.conf.json"
+  }
           },
           "defaultConfiguration": "development"
         },

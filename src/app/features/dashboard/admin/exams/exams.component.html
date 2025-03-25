@@ -38,45 +38,57 @@
     } 
 
     @if (step() === 3) {
-    <div class="step-container">
-      <h3>
-        جدول الامتحانات لـ {{ selectedSubject()?.name }} -
-        {{ selectedExamType() === "weekly" ? "الأسبوعية" : "الشهرية" }}
-      </h3>
-      @if (filteredExams().length > 0) {
-        <div class="exam-table-container">
-          <table class="exam-table">
-            <thead>
-              <tr>
-                <th>الصف</th>
-                <th>اليوم</th>
-                <th>الساعة</th>
-                <th>تحميل</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (exam of filteredExams(); track exam.id) {
+      <div class="step-container">
+        @if (selectedSubject()) {
+          <h2> جدول امتحانات  - {{ selectedSubject() }} ({{ selectedExamType() === 'weekly' ? 'أسبوعي' : 'شهري' }}) </h2>
+        }
+        
+        @if (filteredExams().length > 0) {
+          <div class="exam-table-container">
+            <table class="exam-table">
+              <thead>
                 <tr>
-                  <td [ngClass]="{'kg1-class': exam.class === 'Kg-1', 'kg2-class': exam.class === 'Kg-2','kg3-class': exam.class === 'Kg-3'}">
-                    {{ exam.class }}
-                  </td>
-                  <td>{{ exam.date }}</td>
-                  <td>{{ exam.time }}</td>
-                  <td>
-                    <button (click)="downloadExam(exam)" class="download-btn">
-                      <i class="fas fa-download"></i> تحميل
-                    </button>
-                  </td>
+                  <th>الصف</th>
+                  <th>اليوم</th>
+                  <th>الساعة</th>
+                  <th>عرض</th>
+                  <th>تحميل</th>
                 </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      } @else {
-        <p> لا يوجد امتحانات لهذه المادة. </p>
-      }        
-      <button class="back-btn" (click)="reset()">العودة</button>
-    </div>
+              </thead>
+              <tbody>
+                @for (exam of filteredExams(); track exam._id) {
+                  <tr>
+                    <td [ngClass]="{'kg1-class': exam.class === 'Kg-1', 'kg2-class': exam.class === 'Kg-2', 'kg3-class': exam.class === 'Kg-3'}">
+                      {{ exam.class }}
+                    </td>
+                    <td>{{ formatDate(exam.date) }}</td>
+                      <td>{{ exam.time }}</td>
+                      <td>
+                        <button (click)="viewExam(exam)" class="view-btn">
+                          عرض<i class="fas fa-eye"></i> 
+                        </button>
+                      </td>
+                    <td>
+                      <button (click)="downloadExam(exam)" class="download-btn">
+                        تحميل <i class="fas fa-download"></i> 
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+          @else {
+            <div class="alert alert-warning">
+              <p>لا يوجد امتحانات لهذه المادة</p>
+              <p>Selected Subject: {{ selectedSubject() }}</p>
+              <p>Selected Exam Type: {{ selectedExamType() }}</p>
+              <p>Total Exams: {{ exams().length }}</p>
+            </div>
+        }        
+        <button class="back-btn" (click)="goToStep(1)">العودة</button>
+      </div>
     }
   </div>
 </div>

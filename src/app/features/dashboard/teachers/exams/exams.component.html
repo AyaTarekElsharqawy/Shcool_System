@@ -113,14 +113,14 @@
                 </tr>
               </thead>
               <tbody>
-                @for (exam of filteredExams(); track exam.id) {
+                @for (exam of filteredExams(); track exam._id) {
                   <tr>
-                    <td [ngClass]="{'kg1-class': exam.class === 'Kg-1', 'kg2-class': exam.class === 'Kg-2','kg3-class': exam.class === 'Kg-3'}">
+                    <td [ngClass]="{'kg1-class': exam.class === 'Kg-1', 'kg2-class': exam.class === 'Kg-2', 'kg3-class': exam.class === 'Kg-3'}">
                       {{ exam.class }}
                     </td>
-                    <td>{{ exam.date }}</td>
-                    <td>{{ exam.time }}</td>
-                    <td>
+                    <td>{{ formatDate(exam.date) }}</td>
+                      <td>{{ exam.time }}</td>
+                      <td>
                       <button (click)="viewExam(exam)" class="view-btn">
                         عرض<i class="fas fa-eye"></i> 
                       </button>
@@ -132,7 +132,7 @@
                     </td>
                     <td>
                       <button (click)="confirmDeleteExam(exam)" class="delete-btn">
-                      حذف <i class="fas fa-trash"></i> 
+                        حذف <i class="fas fa-trash"></i> 
                       </button>
                     </td>
                   </tr>
@@ -140,8 +140,14 @@
               </tbody>
             </table>
           </div>
-        } @else {
-          <p> لا يوجد امتحانات لهذه المادة</p>
+        }
+          @else {
+            <div class="alert alert-warning">
+              <p>لا يوجد امتحانات لهذه المادة</p>
+              <p>Selected Subject: {{ selectedSubject() }}</p>
+              <p>Selected Exam Type: {{ selectedExamType() }}</p>
+              <p>Total Exams: {{ exams().length }}</p>
+            </div>
         }        
         <button class="back-btn" (click)="goToStep(1)">العودة</button>
       </div>
