@@ -30,7 +30,7 @@ export class AppComponent {
     { title: 'الحضور', path: '/teacher/attendance', icon: 'fa-regular fa-circle-check' },
     { title: 'الامتحانات', path: '/teacher/exams', icon: 'fa-regular fa-pen-to-square' },
     { title: 'الشروط والتعليمات', path: '/teacher/instructions', icon: 'fa-solid fa-message' },
-  
+
 
   ];
   constructor(private router: Router) {}
