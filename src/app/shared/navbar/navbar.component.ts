@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +10,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  notifications: any[] = []; 
-  hasNewNotifications: boolean = false; 
-  showNotifications: boolean = false; 
+  notifications: any[] = [];
+  hasNewNotifications: boolean = false;
+  showNotifications: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private authService:AuthService,private router:Router) {}
 
   ngOnInit(): void {
     this.loadNotifications();
@@ -20,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   loadNotifications() {
     this.http.get<any>('assets/Data.json').subscribe(data => {
-      this.notifications = data.notifcation; 
+      this.notifications = data.notifcation;
       this.hasNewNotifications = this.notifications.some(notification => !notification.read);
     });
   }
@@ -35,5 +37,9 @@ export class NavbarComponent implements OnInit {
   markNotificationsAsRead() {
     this.notifications.forEach(notification => notification.read = true);
     this.hasNewNotifications = false;
+  }
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/auth/login'])
   }
 }
