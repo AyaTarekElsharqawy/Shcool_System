@@ -1,40 +1,45 @@
 <div class="exam">
   <div class="container">
     @if (step() === 1) {
-    <div class="step-container">
-      <div class="search-container">
-        <input
-          type="text"
-          [(ngModel)]="searchQuery"
-          (input)="filterSubjects()"
-          placeholder=" ابحث عن المادة..."
-          class="search-input"
-        />
-      </div>
-      <div class="subjects row">
-        @for (subject of filteredSubjects(); track subject.name) {
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-          <button
-            (click)="selectSubject(subject)"
-            [ngClass]="getSubjectClass(subject.name)"
-          >
-            <i class="fa-solid fa-folder ms-2"></i> {{ subject.name }}
-          </button>
+      <div class="step-container">
+        <div class="search-container">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (input)="filterSubjects()"
+            placeholder="ابحث عن المادة..."
+            class="search-input"
+          />
         </div>
+        <div class="subjects row">
+          @for (subject of filteredSubjects(); track subject.name) {
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <button
+                (click)="selectSubject(subject)"
+                [ngClass]="getSubjectClass(subject.name)"
+              >
+                <i class="fa-solid fa-folder ms-2"></i> {{ subject.name }}
+              </button>
+            </div>
+          }
+        </div>
+        @if (filteredSubjects().length === 0) {
+          <p class="no-results">⚠ لا توجد مواد مطابقة للبحث.</p>
         }
       </div>
-
-      @if (filteredSubjects().length === 0) {
-      <p class="no-results">⚠ لا توجد مواد مطابقة للبحث.</p>
-      }
-    </div>
     } 
 
     @if (step() === 2) {
-    <div class="step-container buttons">
-      <button (click)="selectExamType('weekly')">الاختبارات الأسبوعية</button>
+    <div class="step-container">
+      <div class="buttons">
+              <button (click)="selectExamType('weekly')">الاختبارات الأسبوعية</button>
       <button (click)="selectExamType('monthly')">الاختبارات الشهرية</button>
+      </div>
+      <button (click)="goToStep(1)" class="back-btn">
+        رجوع
+      </button>
     </div>
+   
     } 
 
     @if (step() === 3) {
@@ -87,7 +92,7 @@
               <p>Total Exams: {{ exams().length }}</p>
             </div>
         }        
-        <button class="back-btn" (click)="goToStep(1)">العودة</button>
+        <button class="back-btn" (click)="goToStep(2)">العودة</button>
       </div>
     }
   </div>

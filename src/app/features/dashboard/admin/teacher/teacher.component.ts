@@ -37,6 +37,12 @@ export class TeacherComponent implements OnInit {
       error: (err: any) => {
         console.error('Error loading teachers:', err);
         this.isLoading = false;
+        Swal.fire({
+            title: 'خطأ',
+            text: 'فشل تحميل بيانات الطلاب',
+            icon: 'error',
+            confirmButtonText: 'حسناً'
+        });
       }
     });
   }

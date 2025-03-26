@@ -1,87 +1,122 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StudentService } from '../../../../services/student.service';
 import { StudentFormComponent } from '../student-form/student-form.component';
-import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+import Swal from 'sweetalert2';
 
 @Component({
-    selector: 'app-student',
-    standalone: true,
-    imports: [FormsModule, ReactiveFormsModule],
-    templateUrl: './student.component.html',
-    styleUrls: ['./student.component.css']
+  selector: 'admin-student',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './student.component.html',
+  styleUrls: ['./student.component.css']
 })
-export class StudentComponent {
-    searchQuery: string = "";
-    filteredStudents: any[] = [];
-    students: any[] = [];
+export class StudentComponent implements OnInit {
+  searchQuery: string = '';
+  filteredStudents: any[] = [];
+  students: any[] = [];
+  isLoading: boolean = false;
 
-    constructor(private fb: FormBuilder, private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal, 
+    private studentService: StudentService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadStudents();
+  }
+
+  loadStudents(): void {
+    this.isLoading = true;
+    this.studentService.getAllStudents().subscribe({
+      next: (students: any) => {
+        this.students = students;
         this.filteredStudents = [...this.students];
-    }
-
-    openModal(student: any = null) {
-        const modalRef = this.modalService.open(StudentFormComponent, {
-            backdrop: 'static',
-            keyboard: false,
-        });
-    modalRef.componentInstance.studentForm = this.fb.group({
-      id: [student?.id || null],
-      name: [student?.name || '', Validators.required],
-      age: [student?.age || null, [Validators.required, Validators.min(3)]],
-      class: [student?.class || '', Validators.required],
-      guardianPhone: [student?.guardianPhone || '', [Validators.required, Validators.pattern(/^\d{11}$/)]],
-      whatsapp: [student?.whatsapp || '', [Validators.required, Validators.pattern(/^\d{11}$/)]],
-      image: [student?.image || null],
-    });
-
-    modalRef.result.then(
-      (result) => {
-        if (result) this.save(result);
+        this.isLoading = false;
       },
-      () => {}
+      error: (err) => {
+        console.error('Error loading students:', err);
+        this.isLoading = false;
+        Swal.fire({
+          title: 'خطأ',
+          text: 'فشل تحميل بيانات الطلاب',
+          icon: 'error',
+          confirmButtonText: 'حسناً'
+        });
+      }
+    });
+  }
+
+  searchStudents(): void {
+    if (!this.searchQuery) {
+      this.filteredStudents = [...this.students];
+      return;
+    }
+    
+    const query = this.searchQuery.toLowerCase();
+    this.filteredStudents = this.students.filter(student => 
+      student.name?.toLowerCase().includes(query) || 
+      student.studentClass?.toLowerCase().includes(query)
     );
   }
 
-  searchStudents() {
-    this.filteredStudents = this.students.filter((student) =>
-      student.name.includes(this.searchQuery) || student.class.includes(this.searchQuery)
-    );
+  openModal(student?: any): void {
+    const modalRef = this.modalService.open(StudentFormComponent);
+    modalRef.componentInstance.student = student;
+
+    modalRef.result.then((result) => {
+      if (result === 'saved') {
+        this.loadStudents();
+      }
+    }).catch(() => {});
   }
 
-  editStudent(student: any) {
+  editStudent(student: any): void {
     this.openModal(student);
   }
 
-
-  deleteStudent(id: number) {
-    const modalRef = this.modalService.open(ConfirmDeleteModalComponent, {
-      backdrop: 'static',
-      keyboard: false,
-    });
-  
-    modalRef.componentInstance.itemType = 'هذا الطالب'; 
-  
-    modalRef.result.then(
-      (confirmed) => {
-        if (confirmed) {
-          this.students = this.students.filter(student => student.id !== id);
-          this.filteredStudents = [...this.students];
+  deleteStudent(id: string): void {
+         Swal.fire({
+              title: 'هل أنت متأكد؟',
+              text: 'لن تتمكن من استعادة هذا المعلم بعد الحذف!',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'نعم، احذفه!',
+              cancelButtonText: 'إلغاء',
+              reverseButtons: true
+            }).then((result) => {
+        if (result.isConfirmed) {
+          this.studentService.deleteStudent(id).subscribe({
+            next: () => {
+              Swal.fire({
+                title: 'تم الحذف!',
+                text: 'تم حذف الطالب بنجاح',
+                icon: 'success',
+                confirmButtonText: 'حسناً'
+              });
+              this.loadStudents();
+            },
+            error: (err) => {
+              console.error('Error deleting student:', err);
+              Swal.fire({
+                title: 'خطأ',
+                text: 'فشل حذف الطالب',
+                icon: 'error',
+                confirmButtonText: 'حسناً'
+              });
+            }
+          });
         }
       },
       () => {}
     );
   }
-  
 
-  save(formData: any) {
-    if (formData.id) {
-      const index = this.students.findIndex((student) => student.id === formData.id);
-      if (index !== -1) this.students[index] = { ...formData };
-    } else {
-      formData.id = this.students.length + 1;
-      this.students.push({ ...formData });
-    }
-    this.filteredStudents = [...this.students];
+  getImageUrl(imagePath: string): string {
+    return this.studentService.getImageUrl(imagePath);
   }
 }

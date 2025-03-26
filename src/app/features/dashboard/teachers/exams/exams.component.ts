@@ -54,7 +54,6 @@ export class ExamsComponent {
   loadExams() {
     const token = localStorage.getItem('token');
     if (!token) {
-      // this.router.navigate(['/login']); 
       return;
     }
   
@@ -66,8 +65,7 @@ export class ExamsComponent {
       },
       error: (err) => {
         if (err.status === 401 || err.status === 403) {
-          // localStorage.removeItem('token');
-          // this.router.navigate(['/login']);
+
         } else {
           this.http.get<any>('assets/TeacherData.json').subscribe(data => {
             this.exams.set(data.exams || []);
@@ -221,17 +219,6 @@ confirmDeleteExam(exam: any) {
       });
     }
   });
-}
-private isTokenValid(): boolean {
-  const token = localStorage.getItem('token');
-  if (!token) return false;
-
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.exp > Date.now() / 1000;
-  } catch (e) {
-    return false;
-  }
 }
   formatDate(dateString: string): string {
     return this.datePipe.transform(dateString, 'yyyy-MM-dd') || dateString;

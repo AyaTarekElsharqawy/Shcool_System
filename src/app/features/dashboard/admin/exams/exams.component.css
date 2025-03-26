@@ -56,36 +56,34 @@ button:hover {
     border-radius: 8px;
     cursor: pointer;
 }
-
-.blue { 
-    background-color: #509CDB4D; 
-    color: #509CDB;
-    border: none;
-}
-
-.red { 
-    background-color: #5C4E8E40; 
-    color: #5C4E8E;
-    border: none;
-}
-
-.white {
+  .arabic-class { 
     background-color: #EDBD1C42; 
     color: #EDBD1C;
     border: none;
-}
-
-.green {
+  }
+  
+  .english-class { 
+    background-color: #509CDB4D; 
+    color: #509CDB;
+    border: none;
+  }
+  
+  .math-class { 
+    background-color: #5C4E8E40; 
+    color: #5C4E8E;
+    border: none;
+  }
+  
+  .science-class {
     background-color: #E1006529;
     color: #E10065;
     border: none;
-}
-
+  }
 .buttons {
     display: flex;
     justify-content: center; 
     align-items: center;  
-    height: 50vh; 
+    height: 45vh; 
 }
 
 .buttons button {

@@ -1,66 +1,79 @@
 <div class="container mt-5">
-  <div class="d-flex justify-content-end mb-3">
-    <button class="btn custom-button" (click)="openModal()">إضافة طالب</button>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>قائمة الطلاب</h2>
+    <button class="btn btn-primary" (click)="openModal()">
+      <i class="bi bi-plus-circle"></i> إضافة طالب
+    </button>
   </div>
 
   <div class="mb-3">
-    <input type="text" class="form-control search-box" placeholder="بحث بالاسم أو الفصل..." [(ngModel)]="searchQuery" (input)="searchStudents()">
+    <input type="text" class="form-control search-box" placeholder="بحث بالاسم أو البريد الإلكتروني..." [(ngModel)]="searchQuery" (input)="searchStudents()">
   </div>
 
-  @if (filteredStudents.length === 0) {
-    <div class="no-students-container">
-      <h3>لا يوجد طلاب مسجلين بعد</h3>
-      <h6>أضف طلاب لعرضهم هنا</h6>
+  @if (isLoading) {
+    <div class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">جاري التحميل...</span>
+      </div>
+      <p class="mt-2">جاري تحميل بيانات الطلاب...</p>
     </div>
   }
-
-  @if (filteredStudents.length > 0) {
-    <div class="table-responsive">
-      <div class="container">
-      <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-          <tr>
-            <th>الصورة</th>
-            <th>الاسم</th>
-            <th>العمر</th>
-            <th>الفصل</th>
-            <th>رقم ولي الأمر</th>
-            <th>واتساب</th>
-            <th>تعديل</th>
-            <th>حذف</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (student of filteredStudents; track student.id) {
+  @else {
+    @if (filteredStudents.length === 0) {
+      <div class="text-center py-5 bg-light rounded">
+        <i class="bi bi-people-fill text-muted" style="font-size: 3rem"></i>
+        <h4 class="mt-3">لا يوجد طلاب مسجلين</h4>
+        <p class="text-muted">اضغط على زر "إضافة طالب" لبدء التسجيل</p>
+      </div>
+    }
+    @else {
+      <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
             <tr>
-              <td class="text-center">
-                @if (student.image) {
-                  <img [src]="student.image" alt="صورة الطالب" class="avatar">
-                } @else {
-                  <div class="default-avatar"></div>
-                }
-              </td>
-              <td>{{ student.name }}</td>
-              <td>{{ student.age }}</td>
-              <td>{{ student.class }}</td>
-              <td>{{ student.guardianPhone }}</td>
-              <td>{{ student.whatsapp }}</td>
-              <td class="text-center">
-                <button class="btn btn-warning btn-sm" (click)="editStudent(student)">
-                  <i class="bi bi-pencil-square"></i> تعديل
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">
-                  <i class="bi bi-trash"></i> حذف
-                </button>
-              </td>
-              
+              <th width="100">الصورة</th>
+              <th>الاسم</th>
+              <th width="100">العمر</th>
+              <th width="120">الفصل</th>
+              <th width="150">رقم ولي الأمر</th>
+              <th width="150">واتساب</th>
+              <th width="120" class="text-center">تعديل</th>
+              <th width="120" class="text-center">حذف</th>
             </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-    </div>
+          </thead>
+          <tbody>
+            @for (student of filteredStudents; track student._id) {
+              <tr>
+                <td class="text-center align-middle">
+                  @if (student.image) {
+                    <img [src]="getImageUrl(student.image)" alt="صورة الطالب" 
+                         class="rounded-circle avatar" width="50" height="50">
+                  } @else {
+                    <div class="default-avatar rounded-circle">
+                      <i class="bi bi-person-fill"></i>
+                    </div>
+                  }
+                </td>
+                <td class="align-middle">{{ student.name }}</td>
+                <td class="align-middle">{{ student.age }}</td>
+                <td class="align-middle">{{ student.studentClass }}</td>
+                <td class="align-middle">{{ student.guardianPhone }}</td>
+                <td class="align-middle">{{ student.whatsapp }}</td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-warning" (click)="editStudent(student)">
+                    <i class="bi bi-pencil-square"></i> تعديل
+                  </button>
+                </td>
+                <td class="text-center align-middle">
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteStudent(student._id)">
+                    <i class="bi bi-trash"></i> حذف
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
   }
 </div>
