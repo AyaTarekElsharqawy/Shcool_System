@@ -169,7 +169,7 @@ export class TeacherComponent implements OnInit {
     operation.subscribe({
       next: (savedTeacher) => {
         console.log('تم الحفظ بنجاح:', savedTeacher);
-        
+        this.loadTeachers();
         if (teacherId) {
           const index = this.users.findIndex(u => u._id === teacherId);
           if (index !== -1) {
