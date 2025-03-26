@@ -33,7 +33,7 @@ export class LoginComponent {
         }
       },
       (err) => {
-        alert('Login failed. Check your credentials and try again.');
+        alert('Login failed. Check your confirmation Email and try again.');
       }
     );
   }
