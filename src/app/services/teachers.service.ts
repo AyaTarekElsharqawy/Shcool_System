@@ -12,7 +12,7 @@ import { catchError, Observable, throwError } from 'rxjs';
   
     private getHeaders(): HttpHeaders {
     //   const token = localStorage.getItem('token') || '';
-    const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTM0N2RhYjE0MzAzNTZlODAwN2M0ZiIsIm5hbWUiOiJBbGlhYSBIZXNoYW0iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDI5NTU2NDcsImV4cCI6MTc0MzU2MDQ0N30.GRfE0BzQxCLzwPrOBkMn6IaSYewynhGJi7y2C6RZ7NA"
+    const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTFlNTY5YWVmNjU5MmI5YmEzZTdmMiIsIm5hbWUiOiJBeWEgVGFyZWsiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDI4NTc2NzksImV4cCI6MTc0MzQ2MjQ3OX0.UpmtraYZPZTFlF7JhBQACPIcgtXmGmm_xUyn8ODJI5I";
       return new HttpHeaders({
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -64,7 +64,8 @@ import { catchError, Observable, throwError } from 'rxjs';
       params: params
     });
   }
-
+  
+  
   updateTeacher(id: string, data: any, imageFile?: File): Observable<any> {
     const formData = new FormData();
     for (const key in data) {
