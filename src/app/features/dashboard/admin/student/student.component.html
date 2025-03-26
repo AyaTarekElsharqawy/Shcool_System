@@ -7,16 +7,15 @@
     <input type="text" class="form-control search-box" placeholder="بحث بالاسم أو الفصل..." [(ngModel)]="searchQuery" (input)="searchStudents()">
   </div>
 
-  @if (filteredStudents.length === 0) {
-    <div class="no-students-container">
-      <h3>لا يوجد طلاب مسجلين بعد</h3>
-      <h6>أضف طلاب لعرضهم هنا</h6>
-    </div>
-  }
+  <!-- عرض رسالة في حالة عدم وجود طلاب -->
+  <div *ngIf="filteredStudents.length === 0" class="no-students-container">
+    <h3>لا يوجد طلاب مسجلين بعد</h3>
+    <h6>أضف طلاب لعرضهم هنا</h6>
+  </div>
 
-  @if (filteredStudents.length > 0) {
-    <div class="table-responsive">
-      <div class="container">
+  <!-- عرض الجدول عند وجود طلاب -->
+  <div *ngIf="filteredStudents.length > 0" class="table-responsive">
+    <div class="container">
       <table class="table table-bordered table-hover">
         <thead class="table-dark">
           <tr>
@@ -31,36 +30,29 @@
           </tr>
         </thead>
         <tbody>
-          @for (student of filteredStudents; track student.id) {
-            <tr>
-              <td class="text-center">
-                @if (student.image) {
-                  <img [src]="student.image" alt="صورة الطالب" class="avatar">
-                } @else {
-                  <div class="default-avatar"></div>
-                }
-              </td>
-              <td>{{ student.name }}</td>
-              <td>{{ student.age }}</td>
-              <td>{{ student.class }}</td>
-              <td>{{ student.guardianPhone }}</td>
-              <td>{{ student.whatsapp }}</td>
-              <td class="text-center">
-                <button class="btn btn-warning btn-sm" (click)="editStudent(student)">
-                  <i class="bi bi-pencil-square"></i> تعديل
-                </button>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">
-                  <i class="bi bi-trash"></i> حذف
-                </button>
-              </td>
-              
-            </tr>
-          }
+          <tr *ngFor="let student of filteredStudents; trackBy: trackByStudentId">
+            <td class="text-center">
+              <img *ngIf="student.image" [src]="student.image" alt="صورة الطالب" class="avatar">
+              <div *ngIf="!student.image" class="default-avatar"></div>
+            </td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.class }}</td>
+            <td>{{ student.guardianPhone }}</td>
+            <td>{{ student.whatsapp }}</td>
+            <td class="text-center">
+              <button class="btn btn-warning btn-sm" (click)="editStudent(student)">
+                <i class="bi bi-pencil-square"></i> تعديل
+              </button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">
+                <i class="bi bi-trash"></i> حذف
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
-    </div>
-  }
+  </div>
 </div>

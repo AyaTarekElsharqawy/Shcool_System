@@ -1,53 +1,64 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-student-form',
+  selector: 'admin-student-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.css']
+  styleUrls: ['./student-form.component.css'],
 })
 export class StudentFormComponent {
   studentForm: FormGroup;
+  imagePreview: string = 'assets/default-avatar.png';
+  selectedFile: File | null = null;
+  formSubmitted = false; 
 
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.studentForm = this.fb.group({
       name: ['', Validators.required],
       age: [null, [Validators.required, Validators.min(3)]],
-      class: ['', Validators.required],
+      class: ['', Validators.required],  // ✅ إضافة حقل الفصل
       guardianPhone: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
-      whatsapp: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]]
+      whatsapp: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
+      image: [null],
     });
   }
 
+  get f(): { [key: string]: AbstractControl } {
+    return this.studentForm.controls;
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+        this.studentForm.patchValue({ image: this.imagePreview });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
   onSubmit() {
+    this.formSubmitted = true;
+    
     if (this.studentForm.valid) {
-      this.activeModal.close(this.studentForm.value);
+      const formData = {
+        ...this.studentForm.value,
+        imageFile: this.selectedFile  // ✅ إرسال الصورة إذا تم اختيارها
+      };
+      this.activeModal.close(formData);
+    } else {
+      console.log('يوجد أخطاء في الفورم');
     }
   }
 
   closeModal() {
     this.activeModal.dismiss();
-  }
-
-  onFileSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
-  
-    if (fileInput.files && fileInput.files.length > 0) {
-      const selectedFile = fileInput.files[0];
-  
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.studentForm.patchValue({
-          image: reader.result
-        });
-        console.log('تم تحويل الصورة:', reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
   }
 }
