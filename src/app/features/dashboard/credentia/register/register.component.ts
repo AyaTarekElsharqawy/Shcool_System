@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,RouterLink],
+  imports: [FormsModule,RouterLink,RouterModule,CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -22,6 +24,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   signUp() {
+    
     console.log('Sending user data:', this.user); // للتحقق من القيم قبل الإرسال
     this.authService.signUp(this.user).subscribe(
       (res) => {
@@ -45,6 +48,10 @@ export class RegisterComponent {
     );
   }
 
+  handleSubmitForm(form:any){
+    console.log(form);
+
+  }
 
 
 }
