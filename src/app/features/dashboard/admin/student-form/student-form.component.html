@@ -1,3 +1,4 @@
+
 <div class="custom-modal">
   <div class="custom-modal-content">
     <div class="custom-modal-header">
@@ -6,7 +7,7 @@
     </div>
 
     <div class="custom-modal-body">
-      <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      <form *ngIf="studentForm" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
         <div>
           <label class="form-label">الاسم</label>
           <input type="text" class="form-control" formControlName="name">
@@ -26,8 +27,8 @@
 
         <div>
           <label class="form-label">الفصل</label>
-          <input type="text" class="form-control" formControlName="class">
-          <div *ngIf="studentForm.controls['class'].invalid && studentForm.controls['class'].touched" class="text-danger">
+          <input type="text" class="form-control" formControlName="classroom">
+          <div *ngIf="studentForm.controls['classroom'].invalid && studentForm.controls['classroom'].touched" class="text-danger">
             الفصل مطلوب
           </div>
         </div>
@@ -50,7 +51,10 @@
 
         <div>
           <label class="form-label">تحميل صورة (اختياري)</label>
-          <input type="file" class="form-control" (change)="onFileSelected($event)">
+          <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+          <div *ngIf="studentForm.get('image')?.value" class="mt-2">
+            <img [src]="studentForm.get('image')?.value" alt="معاينة الصورة" style="max-width: 200px; max-height: 200px;">
+          </div>
         </div>
 
         <div class="custom-modal-footer">
