@@ -1,4 +1,4 @@
-<form (submit)="login()" #loginForm="ngForm">
+<!-- <form (submit)="login()" #loginForm="ngForm">
   <label>Email:</label>
   <input type="email" [(ngModel)]="credentials.email" name="email" required />
 
@@ -6,6 +6,23 @@
   <input type="password" [(ngModel)]="credentials.password" name="password" required />
 
   <button type="submit">Login</button>
+</form> -->
+
+
+<div class="container">
+  <form (submit)="login()" #loginForm="ngForm" class="form">
+    <h2 class="title">Welcome Back</h2>
+    <div class="form-group">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="credentials.email" name="email" required />
+</div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="credentials.password" name="password" required />
+      </div>
+      <button type="submit" class="btn">Login</button>
+
+
 </form>
-
-
+</div>
