@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   imports: [FormsModule, CommonModule,RouterLink],
@@ -23,7 +24,12 @@ export class LoginComponent {
         if (res.token) {
           // ✅ حفظ الـ token والـ role في localStorage
           this.authService.saveToken(res.token, res.role);
-          alert(`Welcome, ${res.role}!`);
+          Swal.fire({
+            icon: 'success',
+            title: `Welcome, ${res.name}!`,
+            text: 'You have successfully logged in.',
+            confirmButtonColor: '#007bff'
+          });
 
           // ✅ توجيه المستخدم بناءً على الـ role
           if (res.role === 'admin') {
@@ -34,7 +40,12 @@ export class LoginComponent {
         }
       },
       (err) => {
-        alert('Login failed. Check your confirmation Email and try again.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: 'Check your confirmation email and try again.',
+          confirmButtonColor: '#d33'
+        });
       }
     );
   }

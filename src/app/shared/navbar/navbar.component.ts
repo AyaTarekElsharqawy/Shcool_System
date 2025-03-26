@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -41,5 +42,13 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.authService.logout();
     this.router.navigate(['/auth/login'])
+    // ✅ إشعار بسيط بعد تسجيل الخروج
+  Swal.fire({
+    icon: 'info',
+    title: 'Logged out!',
+    text: 'You have successfully logged out.',
+    confirmButtonColor: '#007bff',
+    timer: 20000 // ✅ الإشعار يختفي تلقائيًا بعد ثانيتين
+  });
   }
 }
