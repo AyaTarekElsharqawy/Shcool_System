@@ -1,0 +1,88 @@
+/* خلفية هادئة */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f7f7f7;
+}
+
+/* تصميم الفورم */
+.form {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+/* العنوان */
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* الحقول */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  background: transparent;
+}
+
+/* التأثير عند التركيز */
+.form-group input:focus {
+  border-color: #666;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* التأثير العائم للنصوص */
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: #777;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: 5px;
+  font-size: 12px;
+  color: #333;
+}
+
+/* زر تسجيل الدخول */
+.btn {
+  width: 100%;
+  background: #333;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* تأثير Hover */
+.btn:hover {
+  background: #444;
+  transform: scale(1.02);
+}

@@ -13,13 +13,21 @@ export class ExamService {
   constructor(private http: HttpClient) {
     this.loadInitialExams();
   }
-
+  private getValidToken(): string {
+    try {
+      const token = localStorage.getItem('token') || '';
+      return token.replace(/[^\w.-]/g, ''); 
+    } catch (error) {
+      console.error('Error reading token from localStorage:', error);
+      return '';
+    }
+  }
   private getHeaders() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTE3OWE2NTM0ZWU3OWEwMTdmY2Q0MyIsIm5hbWUiOiJBbGlhYSIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNzQyOTI0MzY3LCJleHAiOjE3NDM1MjkxNjd9.YN6rt0cgY_N1uwFsI0o3G99qWICWYGAjFckdIBbTvqU"; 
+    const token = this.getValidToken();
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'token': token
+        'Authorization': `Bearer ${token}`
       })
     };
   }
@@ -58,3 +66,4 @@ export class ExamService {
       );
   }
 }
+

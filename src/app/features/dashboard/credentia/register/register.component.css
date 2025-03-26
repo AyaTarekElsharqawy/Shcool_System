@@ -1,0 +1,142 @@
+/* خلفية متدرجة بلون عصري */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* حركة Fade-in عند التحميل */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* تصميم الفورم مع ظل خفيف */
+.form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: slideIn 0.8s ease-in-out;
+  box-shadow: #0056b3 0px 0px 10px;
+}
+
+/* حركة دخول الفورم */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* العنوان */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* الحقول بتأثير Floating Label */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  background: transparent;
+}
+
+/* تأثير عند التركيز */
+.form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
+}
+
+/* التأثير العائم للنصوص */
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #777;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: 5px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+/* زر التسجيل */
+.btn {
+  width: 100%;
+  background: linear-gradient(90deg, #007bff, #6610f2);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* تأثير Hover */
+.btn:hover {
+  background: linear-gradient(90deg, #0056b3, #5603ad);
+  transform: scale(1.05);
+}
+
+/* تأثير Ripple عند الضغط */
+.btn:active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  animation: ripple 0.4s ease-out;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

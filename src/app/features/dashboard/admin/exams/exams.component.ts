@@ -1,11 +1,13 @@
-import { ChangeDetectorRef, Component, effect, signal } from '@angular/core';
+import { Component, signal, effect } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import Swal from 'sweetalert2';
 import { ExamService } from '../../../../services/exam.service';
+import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 @Component({
   selector: 'app-exam',
@@ -32,28 +34,14 @@ export class ExamsComponent {
     private cdr: ChangeDetectorRef,
     private datePipe: DatePipe,
     private examService: ExamService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router 
+
   ) {
-    this.loadInitialData();
-    this.subscribeToExams();
+    this.loadExams();
+
   }
 
-  private subscribeToExams() {
-    this.examService.exams$.pipe(
-      delay(0)
-    ).subscribe({
-      next: (exams) => {
-        this.exams.set(exams);
-        this.updateFilteredExams();
-        this.cdr.markForCheck();
-      },
-      error: (err) => {
-        console.error('Error loading exams:', err);
-        this.cdr.markForCheck();
-      }
-    });
-  }
-  
   loadInitialData() {
     this.subjects.set([
       { name: 'اللغة العربية' },
@@ -66,30 +54,41 @@ export class ExamsComponent {
 
 
   loadExams() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']); 
+      return;
+    }
+  
     this.examService.getExams().subscribe({
       next: (exams) => {
         this.exams.set(exams);
         this.updateFilteredExams();
+        this.cdr.markForCheck();
       },
       error: (err) => {
-        console.error('Failed to load exams:', err);
-        this.http.get<any>('assets/TeacherData.json').subscribe(data => {
-          this.exams.set(data.exams || []);
-          this.updateFilteredExams();
-        });
+        if (err.status === 401 || err.status === 403) {
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+        } else {
+          this.http.get<any>('assets/TeacherData.json').subscribe(data => {
+            this.exams.set(data.exams || []);
+            this.updateFilteredExams();
+            this.cdr.markForCheck();
+          });
+        }
       }
     });
   }
   updateFilteredExams() {
-    if (!this.selectedSubject() || !this.selectedExamType()) return;
-  
-    const filtered = this.exams().filter(exam => {
-      const subjectMatch = exam.subject === this.selectedSubject();
-      const typeMatch = exam.examType === this.selectedExamType();
-      return subjectMatch && typeMatch;
-    });
-  
-    this.filteredExams.set(filtered);
+    const subject = this.selectedSubject();
+    const type = this.selectedExamType();
+    if (!subject || !type) return;
+
+    this.filteredExams.set(
+      this.exams().filter(exam => exam.subject === subject && exam.examType === type)
+    );
+    this.cdr.markForCheck();
   }
 
   filterSubjects() {
@@ -121,20 +120,26 @@ export class ExamsComponent {
 }
 private prepareExamData(examData: any): any {
   const formattedDate = this.datePipe.transform(examData.date, 'yyyy-MM-dd') || examData.date;
-  
-  const timeParts = examData.time.split(':');
-  const hours = parseInt(timeParts[0], 10);
-  const minutes = parseInt(timeParts[1], 10);
-  const timeDate = new Date();
-  timeDate.setHours(hours, minutes, 0, 0);
-  const formattedTime = this.datePipe.transform(timeDate, 'hh:mm a') || examData.time;
 
+  let formattedTime = examData.time;
+  if (examData.time && examData.time.includes(':')) {
+      const [hours, minutes] = examData.time.split(':').map(Number);
+      if (!isNaN(hours) && !isNaN(minutes)) {
+          const timeDate = new Date();
+          timeDate.setHours(hours, minutes, 0, 0);
+          formattedTime = this.datePipe.transform(timeDate, 'hh:mm a') || examData.time;
+      } else {
+          console.warn("🚨 وقت غير صالح:", examData.time);
+          formattedTime = 'غير متاح';
+      }
+  }
   return {
-      ...examData,
-      date: formattedDate,
-      time: formattedTime
-  };
+    ...examData,
+    date: formattedDate,
+    time: formattedTime
+};
 }
+
   viewExam(exam: any) {
     const questionsFormatted = exam.questions.split('\n').map((q: string, index: number) => 
       `<div style="margin-bottom: 5px;">${index + 1}. ${q.trim()}</div>`

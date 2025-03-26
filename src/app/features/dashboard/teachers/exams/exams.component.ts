@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import Swal from 'sweetalert2';
 import { ExamService } from '../../../../services/exam.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exam',
@@ -39,7 +40,8 @@ export class ExamsComponent {
     private cdr: ChangeDetectorRef,
     private datePipe: DatePipe,
     private examService: ExamService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router 
   ) {
     this.loadExams();
   }
@@ -50,6 +52,12 @@ export class ExamsComponent {
     this.goToStep(5);
   }
   loadExams() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // this.router.navigate(['/login']); 
+      return;
+    }
+  
     this.examService.getExams().subscribe({
       next: (exams) => {
         this.exams.set(exams);
@@ -57,11 +65,16 @@ export class ExamsComponent {
         this.cdr.markForCheck();
       },
       error: (err) => {
-        this.http.get<any>('assets/TeacherData.json').subscribe(data => {
-          this.exams.set(data.exams || []);
-          this.updateFilteredExams();
-          this.cdr.markForCheck();
-        });
+        if (err.status === 401 || err.status === 403) {
+          // localStorage.removeItem('token');
+          // this.router.navigate(['/login']);
+        } else {
+          this.http.get<any>('assets/TeacherData.json').subscribe(data => {
+            this.exams.set(data.exams || []);
+            this.updateFilteredExams();
+            this.cdr.markForCheck();
+          });
+        }
       }
     });
   }
@@ -115,13 +128,20 @@ export class ExamsComponent {
 
   saveExamAndGoToStep5(event: Event) {
     event.preventDefault();
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      // this.router.navigate(['/login']);
+      return;
+    }
+  
     const examData = this.newExam();
-
+  
     if (!this.isExamDataValid(examData)) {
       Swal.fire({ icon: 'error', title: 'خطأ', text: 'يرجى ملء جميع الحقول!', confirmButtonText: 'حسناً' });
       return;
     }
-
+  
     this.examService.addExam(this.prepareExamData(examData)).subscribe({
       next: () => {
         Swal.fire({ icon: 'success', title: 'تم الحفظ بنجاح', timer: 1500, showConfirmButton: false });
@@ -129,7 +149,12 @@ export class ExamsComponent {
         this.loadExams();
       },
       error: (err) => {
-        Swal.fire({ icon: 'error', title: 'خطأ', text: 'فشل في حفظ الاختبار', confirmButtonText: 'حسناً' });
+        if (err.status === 401 || err.status === 403) {
+          // localStorage.removeItem('token');
+          // this.router.navigate(['/login']);
+        } else {
+          Swal.fire({ icon: 'error', title: 'خطأ', text: 'فشل في حفظ الاختبار', confirmButtonText: 'حسناً' });
+        }
       }
     });
   }
@@ -163,29 +188,51 @@ export class ExamsComponent {
 }
 
 
-  confirmDeleteExam(exam: any) {
-    Swal.fire({
-      title: 'هل أنت متأكد؟',
-      text: 'لن تتمكن من استعادة هذا الامتحان!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'نعم، احذفه',
-      cancelButtonText: 'إلغاء'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.examService.deleteExam(exam._id).subscribe({
-          next: () => {
-            Swal.fire({ title: 'تم الحذف بنجاح', icon: 'success' });
-            this.loadExams(); 
-          },
-          error: (err) => {
+confirmDeleteExam(exam: any) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    this.router.navigate(['/login']);
+    return;
+  }
+
+  Swal.fire({
+    title: 'هل أنت متأكد؟',
+    text: 'لن تتمكن من استعادة هذا الامتحان!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'نعم، احذفه',
+    cancelButtonText: 'إلغاء'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.examService.deleteExam(exam._id).subscribe({
+        next: () => {
+          Swal.fire({ title: 'تم الحذف بنجاح', icon: 'success' });
+          this.loadExams(); 
+        },
+        error: (err) => {
+          if (err.status === 401 || err.status === 403) {
+            localStorage.removeItem('token');
+            this.router.navigate(['/login']);
+          } else {
             console.error('❌ خطأ في حذف الامتحان:', err);
             Swal.fire({ title: 'خطأ', text: 'فشل في حذف الامتحان', icon: 'error' });
           }
-        });
-      }
-    });
+        }
+      });
+    }
+  });
+}
+private isTokenValid(): boolean {
+  const token = localStorage.getItem('token');
+  if (!token) return false;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.exp > Date.now() / 1000;
+  } catch (e) {
+    return false;
   }
+}
   formatDate(dateString: string): string {
     return this.datePipe.transform(dateString, 'yyyy-MM-dd') || dateString;
 }
