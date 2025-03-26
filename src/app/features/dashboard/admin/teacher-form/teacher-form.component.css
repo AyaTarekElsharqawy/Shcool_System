@@ -19,7 +19,11 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: none !important;
 }
-
+  
+.form-control.ng-invalid.ng-touched,
+.form-control.ng-invalid.ng-dirty {
+  border-color: #dc3545;
+}
 .custom-modal-header {
     padding: 15px;
     background-color: #509CDB;

@@ -1,70 +1,110 @@
 <div class="custom-modal">
-    <div class="custom-modal-content">
-      <div class="custom-modal-header">
-        <h5>إضافة معلم جديد</h5>
-        <button class="btn-close" (click)="closeModal()">×</button>
-      </div>
-      
-      <div class="custom-modal-body">
-        <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
-          <div>
-            <label class="form-label">الاسم</label>
-            <input type="text" class="form-control" formControlName="name">
-            <div *ngIf="teacherForm.controls['name'].invalid && teacherForm.controls['name'].touched" class="text-danger">
-              الاسم مطلوب
-            </div>
-          </div>
-  
-          <div>
-            <label class="form-label">البريد الإلكتروني</label>
-            <input type="email" class="form-control" formControlName="email">
-            <div *ngIf="teacherForm.controls['email'].invalid && teacherForm.controls['email'].touched" class="text-danger">
-              بريد إلكتروني غير صحيح
-            </div>
-          </div>
-  
-          <div>
-            <label class="form-label">الهاتف</label>
-            <input type="text" class="form-control" formControlName="phone">
-            <div *ngIf="teacherForm.controls['phone'].invalid && teacherForm.controls['phone'].touched" class="text-danger">
-              يجب أن يكون رقم الهاتف 11 رقماً
-            </div>
-          </div>
-
-          <div>
-            <label class="form-label">العمر</label>
-            <input type="number" class="form-control" formControlName="age">
-            <div *ngIf="teacherForm.controls['age'].invalid && teacherForm.controls['age'].touched" class="text-danger">
-              العمر يجب أن يكون 18 سنة أو أكثر
-            </div>
-          </div>
-
-          <div>
-            <label class="form-label">التخصص</label>
-            <input type="text" class="form-control" formControlName="degree">
-            <div *ngIf="teacherForm.controls['degree'].invalid && teacherForm.controls['degree'].touched" class="text-danger">
-              هذا الحقل مطلوب
-            </div>
-          </div>
-
-          <div>
-            <label class="form-label">المادة</label>
-            <input type="text" class="form-control" formControlName="subject">
-            <div *ngIf="teacherForm.controls['subject'].invalid && teacherForm.controls['subject'].touched" class="text-danger">
-              هذا الحقل مطلوب
-            </div>
-          </div>
-
-          <div>
-            <label class="form-label">تحميل صورة (اختياري)</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)">
-          </div>
-  
-          <div class="custom-modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="closeModal()">إلغاء</button>
-            <button type="submit" class="btn btn-primary" [disabled]="teacherForm.invalid">حفظ</button>
-          </div>
-        </form>
-      </div>
+  <div class="custom-modal-content">
+    <div class="custom-modal-header">
+      <h5>إضافة معلم جديد</h5>
+      <button class="btn-close" (click)="closeModal()">×</button>
     </div>
+    
+    <div class="custom-modal-body">
+      <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+        <!-- حقل الاسم -->
+        <div class="mb-3">
+          <label class="form-label">الاسم</label>
+          <input type="text" class="form-control" formControlName="name">
+          @if (f['name'].errors && (f['name'].touched || formSubmitted)) {
+            <div class="text-danger">
+              @if (f['name'].errors['required']) {
+                <small>هذا الحقل مطلوب</small>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- حقل العمر -->
+        <div class="mb-3">
+          <label class="form-label">العمر</label>
+          <input type="number" class="form-control" formControlName="age">
+          @if (f['age'].errors && (f['age'].touched || formSubmitted)) {
+            <div class="text-danger">
+              @if (f['age'].errors['required']) {
+                <small>هذا الحقل مطلوب</small>
+              }
+              @if (f['age'].errors['min']) {
+                <small>العمر يجب أن يكون 18 سنة أو أكثر</small>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- حقل الهاتف -->
+        <div class="mb-3">
+          <label class="form-label">الهاتف</label>
+          <input type="text" class="form-control" formControlName="phone">
+          @if (f['phone'].errors && (f['phone'].touched || formSubmitted)) {
+            <div class="text-danger">
+              @if (f['phone'].errors['required']) {
+                <small>هذا الحقل مطلوب</small>
+              }
+              @if (f['phone'].errors['pattern']) {
+                <small>يجب إدخال 11 رقماً</small>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- حقل البريد الإلكتروني -->
+        <div class="mb-3">
+          <label class="form-label">البريد الإلكتروني</label>
+          <input type="email" class="form-control" formControlName="email">
+          @if (f['email'].errors && (f['email'].touched || formSubmitted)) {
+            <div class="text-danger">
+              @if (f['email'].errors['required']) {
+                <small>هذا الحقل مطلوب</small>
+              }
+              @if (f['email'].errors['email']) {
+                <small>بريد إلكتروني غير صالح</small>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- حقل المؤهل -->
+        <div class="mb-3">
+          <label class="form-label">المؤهل</label>
+          <input type="text" class="form-control" formControlName="degree">
+          @if (f['degree'].errors && (f['degree'].touched || formSubmitted)) {
+            <div class="text-danger">
+              @if (f['degree'].errors['required']) {
+                <small>هذا الحقل مطلوب</small>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- حقل المادة -->
+        <div class="mb-3">
+          <label class="form-label">المادة</label>
+          <input type="text" class="form-control" formControlName="subject">
+          @if (f['subject'].errors && (f['subject'].touched || formSubmitted)) {
+            <div class="text-danger">
+              @if (f['subject'].errors['required']) {
+                <small>هذا الحقل مطلوب</small>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- حقل الصورة -->
+        <div class="mb-3">
+          <label class="form-label">صورة المعلم</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">إلغاء</button>
+          <button type="submit" class="btn btn-primary">حفظ</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
