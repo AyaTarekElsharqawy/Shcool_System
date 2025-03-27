@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -16,15 +16,28 @@ export class RegisterComponent {
   user = {
     name: '',
     email: '',
-    password: ''
-
+    password: '',
+    phone: '',
+    role: 'teacher',
+    isConfirmed: false,
+    walletBalance: 0
   };
+
+  passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+  phonePattern = /^[0-9]{11}$/;
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  signUp() {
-    
-    console.log('Sending user data:', this.user); // للتحقق من القيم قبل الإرسال
+  signUp(form: NgForm) {
+    if (form.invalid) {
+      // Mark all fields as touched to show validation messages
+      Object.keys(form.controls).forEach(key => {
+        form.controls[key].markAsTouched();
+      });
+      return;
+    }
+
+    console.log('Sending user data:', this.user);
     this.authService.signUp(this.user).subscribe(
       (res) => {
         Swal.fire({
@@ -40,17 +53,17 @@ export class RegisterComponent {
         Swal.fire({
           icon: 'error',
           title: 'Registration Failed',
-          text: 'Please try again.',
+          text: err.error?.message || 'Please try again.',
           confirmButtonColor: '#d33'
         });
       }
     );
-  }
 
-  handleSubmitForm(form:any){
-    console.log(form);
+  // handleSubmitForm(form:any){
+  //   console.log(form);
 
   }
+// }
 
 
 }

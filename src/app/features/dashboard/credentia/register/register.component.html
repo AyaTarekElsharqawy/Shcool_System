@@ -1,18 +1,4 @@
-<!-- <form (submit)="signUp()" #signUpForm="ngForm">
-  <label>Name:</label>
-  <input type="text" [(ngModel)]="user.name" name="name" required />
-
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="user.email" name="email" required />
-
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="user.password" name="password" required />
-
-
-
-  <button type="submit">Sign Up</button>
-</form> -->
-
+<!-- 
 <div class="container">
   <form (submit)="signUp()" #signUpForm="ngForm" class="form">
     <h2 class="title">Sign Up</h2>
@@ -36,6 +22,109 @@
 
     <p class="login-link">
       لديك حساب؟ <a routerLink="/auth/login">تسجيل الدخول</a>
+    </p>
+  </form>
+</div> -->
+<div class="container mt-5" dir="rtl">
+  <form #registerForm="ngForm" (ngSubmit)="signUp(registerForm)" class="form p-4 shadow">
+    <h2 class="text-center mb-4">تسجيل حساب جديد</h2>
+
+    <!-- Name Field -->
+    <div class="mb-3 form-group text-end">
+      <label for="name" class="form-label d-block text-end">الاسم الكامل</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="name"
+        [(ngModel)]="user.name" 
+        name="name" 
+        required
+        minlength="3"
+        maxlength="30"
+        #name="ngModel"
+        [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+      >
+      <div class="invalid-feedback text-end" *ngIf="name.errors?.['required']">
+        مطلوب إدخال الاسم
+      </div>
+      <div class="invalid-feedback text-end" *ngIf="name.errors?.['minlength']">
+        يجب أن يكون الاسم 3 أحرف على الأقل
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-3 form-group text-end">
+      <label for="email" class="form-label d-block text-end">البريد الإلكتروني</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        id="email"
+        [(ngModel)]="user.email" 
+        name="email" 
+        required
+        #email="ngModel"
+        [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+      >
+      <div class="invalid-feedback text-end" *ngIf="email.errors?.['required']">
+        مطلوب إدخال البريد الإلكتروني
+      </div>
+      <div class="invalid-feedback text-end" *ngIf="email.errors?.['email']">
+        بريد إلكتروني غير صالح
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-3 form-group text-end">
+      <label for="password" class="form-label d-block text-end">كلمة المرور</label>
+      <input 
+        type="password" 
+        class="form-control" 
+        id="password"
+        [(ngModel)]="user.password" 
+        name="password" 
+        required
+        minlength="6"
+        maxlength="20"
+        [pattern]="passwordPattern"
+        #password="ngModel"
+        [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+      >
+      <div class="invalid-feedback text-end" *ngIf="password.errors?.['required']">
+        مطلوب إدخال كلمة المرور
+      </div>
+      <div class="invalid-feedback text-end" *ngIf="password.errors?.['minlength']">
+        يجب أن تكون كلمة المرور 6 أحرف على الأقل
+      </div>
+      <div class="invalid-feedback text-end" *ngIf="password.errors?.['pattern']">
+        يجب أن تحتوي كلمة المرور على حرف ورقم على الأقل
+      </div>
+    </div>
+    <div class="mb-3  form-group text-end">
+      <label for="phone" class="form-label d-block text-end">رقم الهاتف</label>
+      <input 
+        type="tel" 
+        class="form-control" 
+        id="phone"
+        [(ngModel)]="user.phone" 
+        name="phone" 
+        [pattern]="phonePattern"
+        #phone="ngModel"
+        [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)"
+      >
+      <div class="invalid-feedback text-end" *ngIf="phone.errors?.['pattern']">
+        رقم هاتف غير صالح (يجب أن يكون 11 أرقام)
+      </div>
+    </div>
+    <!-- Submit Button -->
+    <button 
+      type="submit" 
+      class="btn btn-primary w-100 mt-3"
+    >
+      تسجيل
+    </button>
+
+    <p class="text-center mt-3">
+      لديك حساب بالفعل؟ <a routerLink="/auth/login" class="text-decoration-none">سجل الدخول هنا</a>
     </p>
   </form>
 </div>

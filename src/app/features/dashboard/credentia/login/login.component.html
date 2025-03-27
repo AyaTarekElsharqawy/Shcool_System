@@ -13,12 +13,12 @@
   <form (submit)="login()" #loginForm="ngForm" class="form">
     <h2 class="title">Welcome Back</h2>
     <div class="form-group">
-    <label>Email</label>
+    <label  class="form-label d-block text-end">البريد الالكتروني</label>
     <input type="email" [(ngModel)]="credentials.email" name="email" required />
 </div>
 
       <div class="form-group">
-        <label>Password</label>
+        <label  class="form-label d-block text-end">كلمة المرور</label>
         <input type="password" [(ngModel)]="credentials.password" name="password" required />
       </div>
       <button type="submit" class="btn">Login</button>

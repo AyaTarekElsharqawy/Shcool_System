@@ -3,15 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #0a0f2c;
 }
 
 .form {
-  background: white;
+  background: rgb(221, 233, 255);
   padding: 40px;
   border-radius: 15px;
   width: 100%;
-  max-width: 450px;
+  max-width: 700px;
   text-align: center;
   animation: fadeIn 1s ease-in-out;
   box-shadow: 0px 5px 20px rgba(255, 255, 255, 0.4);
@@ -32,13 +31,12 @@
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 20px;
-  background: linear-gradient(to right, #002147, #9a5ce0); /* ✅ Gradient أغمق */
+  background: linear-gradient(to right, #413d79, #9a5ce0); /* ✅ Gradient أغمق */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 
-/* ✅ الحقول */
 .form-group {
   position: relative;
   margin-bottom: 20px;
@@ -47,26 +45,20 @@
 .form-group input {
   width: 100%;
   padding: 14px;
-  border: 2px solid #0a0f2c;
+  border: 2px solid #a0a6c9;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease-in-out;
   background: transparent;
 }
 
-/* ✅ تأثير عند التركيز */
 .form-group input:focus {
-  border-color: #66a3ff;
+  border-color: #3a6ebb;
   outline: none;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
 }
 
-/* ✅ التأثير العائم للنصوص */
 .form-group label {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
   font-size: 16px;
   color: #0a0f2c;
   transition: 0.3s ease-in-out;
@@ -107,7 +99,7 @@
   text-align: center;
   margin-top: 15px;
   font-size: 16px;
-  color: #0a0f2c; /* ✅ جعل النص كحلي */
+  color: #2f3b77; /* ✅ جعل النص كحلي */
 }
 
 .signup-link a {

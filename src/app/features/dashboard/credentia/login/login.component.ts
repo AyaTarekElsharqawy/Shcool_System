@@ -26,7 +26,7 @@ export class LoginComponent {
           this.authService.saveToken(res.token, res.role);
           Swal.fire({
             icon: 'success',
-            title: `Welcome, ${res.name}!`,
+            title: `Welcome!`,
             text: 'You have successfully logged in.',
             confirmButtonColor: '#007bff'
           });

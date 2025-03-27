@@ -1,25 +1,31 @@
-/* ✅ خلفية كحلية */
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #0a0f2c;
 }
 
-/* ✅ تصميم الفورم */
 .form {
-  background: white;
+  background: rgb(221, 233, 255);
   padding: 40px;
   border-radius: 15px;
   width: 100%;
-  max-width: 450px;
+  max-width: 700px;
   text-align: center;
   animation: fadeIn 1s ease-in-out;
   box-shadow: 0px 5px 20px rgba(255, 255, 255, 0.4);
 }
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #343a40;
+}
 
-/* ✅ حركة Fade-in عند التحميل */
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -31,75 +37,51 @@
   }
 }
 
-/* ✅ تحسين عنوان "Sign Up" بجعلها `gradient` داكن */
 .title {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 20px;
-  background: linear-gradient(to right, #002147, #9a5ce0);
+  background: linear-gradient(to right, #413d79, #9a5ce0); /* ✅ Gradient أغمق */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+
 /* ✅ الحقول */
 .form-group {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
-/* ✅ الحقول مع `Floating Label` */
 .form-group input {
   width: 100%;
   padding: 14px;
-  border: 2px solid #0a0f2c;
+  border: 2px solid #a0a6c9;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease-in-out;
   background: transparent;
-  color: #0a0f2c;
 }
 
-/* ✅ Placeholder */
-.form-group input::placeholder {
-  color: transparent;
+.form-group input:focus {
+  border-color: #3a6ebb;
+  outline: none;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
 }
 
-/* ✅ التأثير العائم للنصوص */
 .form-group label {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
+
   font-size: 16px;
-  color: #777;
+  color: #0a0f2c;
   transition: 0.3s ease-in-out;
   pointer-events: none;
-  background: white;
-  padding: 0 5px;
 }
 
-/* ✅ تحريك الـ `label` عند التركيز أو إدخال البيانات */
 .form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label {
   top: 5px;
   font-size: 12px;
   color: #0047ab;
-}
-
-/* ✅ تأثير عند التركيز */
-.form-group input:focus {
-  border-color: #66a3ff;
-  outline: none;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-}
-
-/* ✅ تحسين الأخطاء */
-.error {
-  color: red;
-  font-size: 12px;
-  text-align: left;
-  margin-top: 5px;
-  padding-left: 5px;
 }
 
 /* ✅ زر تسجيل الدخول */
@@ -113,7 +95,9 @@
   font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5); /* ✅ ظل أبيض */
 }
 
 /* ✅ تأثير Hover */
@@ -122,12 +106,12 @@
   transform: scale(1.05);
 }
 
-/* ✅ رابط تسجيل الحساب */
+/* ✅ رابط تسجيل حساب جديد */
 .signup-link {
   text-align: center;
   margin-top: 15px;
   font-size: 16px;
-  color: #0a0f2c;
+  color: #2f3b77; /* ✅ جعل النص كحلي */
 }
 
 .signup-link a {

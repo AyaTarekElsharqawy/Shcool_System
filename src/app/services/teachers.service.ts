@@ -84,6 +84,8 @@ updateTeacher(id: string, data: any, imageFile?: File): Observable<any> {
   if (data.age) formData.append('age', data.age.toString());
   if (data.subject) formData.append('subject', data.subject);
   if (data.degree) formData.append('degree', data.degree);
+  if (data.phone) formData.append('phone', data.phone);
+  if (data.email) formData.append('email', data.email);
   if (imageFile) {
     formData.append('image', imageFile);
   }
