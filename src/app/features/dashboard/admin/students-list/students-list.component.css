@@ -1,7 +1,7 @@
-.top-right-btn {
+.student-card{
 
   background-color: #007bff;
-  color: white;
+  color: #0056b3;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
@@ -13,20 +13,21 @@
   margin-top: 40px;
 }
 
-.top-right-btn:hover {
+.student-card:hover {
   background-color: #0056b3;
+  color: #ffffff;
   transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  .top-right-btn {
+  .student-card {
     padding: 8px 16px;
     font-size: 14px;
   }
 }
 
 @media (max-width: 576px) {
-  .top-right-btn {
+  .student-card {
     padding: 6px 12px;
     font-size: 12px;
     top: 10px;
@@ -45,7 +46,6 @@
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
-/* أنيميشن عند الفتح */
 @keyframes slideDown {
   from {
     transform: translateY(-50px);
@@ -113,3 +113,32 @@
 
 
 
+.student-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.student-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #007bff;
+  margin-bottom: 10px;
+}
+
+.student-info h3 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.student-info p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}

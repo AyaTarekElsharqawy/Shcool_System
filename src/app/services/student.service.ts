@@ -87,7 +87,21 @@ export class StudentService {
       })
     );
   }
-
+  getStudentById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, {
+      headers: this.getAuthHeaders()
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  getStudentMarks(studentId: string, year: number, month: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${studentId}/marks?year=${year}&month=${month}`, {
+      headers: this.getAuthHeaders()
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
   deleteStudent(id: string): Observable<any> {
     if (!id) {
       return throwError(() => new Error('Student ID is required'));
