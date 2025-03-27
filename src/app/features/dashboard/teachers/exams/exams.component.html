@@ -87,9 +87,14 @@
     }
 
     @if (step() === 4) {
-      <div class="step-container buttons">
-        <button (click)="selectExamType('weekly')">الاختبارات الأسبوعية</button>
+      <div class="step-container">
+        <div class="buttons">
+                <button (click)="selectExamType('weekly')">الاختبارات الأسبوعية</button>
         <button (click)="selectExamType('monthly')">الاختبارات الشهرية</button>
+        </div>
+        <button (click)="goToStep(3)" class="back-btn">
+          رجوع
+        </button>
       </div>
     }
 
@@ -149,7 +154,7 @@
               <p>Total Exams: {{ exams().length }}</p>
             </div>
         }        
-        <button class="back-btn" (click)="goToStep(1)">العودة</button>
+        <button class="back-btn" (click)="goToStep(4)">العودة</button>
       </div>
     }
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Input() backgroundColor: string = '';
   notifications: any[] = [];
   hasNewNotifications: boolean = false;
   showNotifications: boolean = false;
@@ -42,13 +43,12 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.authService.logout();
     this.router.navigate(['/auth/login'])
-    // ✅ إشعار بسيط بعد تسجيل الخروج
   Swal.fire({
     icon: 'info',
     title: 'Logged out!',
     text: 'You have successfully logged out.',
     confirmButtonColor: '#007bff',
-    timer: 20000 // ✅ الإشعار يختفي تلقائيًا بعد ثانيتين
+    timer: 50000
   });
   }
 }

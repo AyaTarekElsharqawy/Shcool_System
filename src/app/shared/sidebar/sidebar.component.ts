@@ -11,6 +11,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class SidebarComponent {
   isSidebarOpen = false;
   @Input() links: { title: string; path: string; icon: string }[] = [];
+  
    toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }

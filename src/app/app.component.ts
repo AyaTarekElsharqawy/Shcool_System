@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'school-system';
   links: { title: string; path: string; icon: string }[] = [];
+  
   adminLinks = [
     { title: 'الصفحة الرئيسية', path: '/admin/home', icon: 'fa-solid fa-house' },
     { title: 'الفصول', path: '/admin/classes', icon: 'fa-solid fa-book' },
@@ -48,4 +49,5 @@ export class AppComponent {
       }
     });
   }
+  
 }
