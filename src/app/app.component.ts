@@ -3,9 +3,10 @@ import { Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, NavbarComponent,RouterModule],
+  imports: [CommonModule,RouterOutlet, SidebarComponent, NavbarComponent,RouterModule],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -31,6 +32,7 @@ export class AppComponent {
     { title: 'الامتحانات', path: '/teacher/exams', icon: 'fa-regular fa-pen-to-square' },
     { title: 'الشروط والتعليمات', path: '/teacher/instructions', icon: 'fa-solid fa-message' },
     { title: ' الدردشه', path: '/teacher/chat', icon: 'fa-solid fa-message' },
+
 
   ];
   constructor(private router: Router) {}
