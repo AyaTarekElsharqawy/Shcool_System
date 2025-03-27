@@ -9,6 +9,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { ClassCardComponent } from './class-card/class-card.component';
 import { ClassesListComponent } from './classes-list/classes-list.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -22,5 +23,6 @@ export const teacherRoutes: Routes = [
   {path:'StudentList',component:StudentListComponent},
   {path:'StudentCard',component:StudentCardComponent},
   {path: 'class-card',component: ClassCardComponent},
-  {path:'classes',component:ClassesListComponent}
+  {path:'classes',component:ClassesListComponent},
+  {path:'chat' ,component:ChatComponent},
 ];

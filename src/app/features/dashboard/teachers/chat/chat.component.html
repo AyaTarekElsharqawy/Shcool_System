@@ -1,0 +1,18 @@
+<div class="chat-container">
+    <div class="chat-messages" id="chat-messages">
+      <div *ngFor="let message of messages" class="message" [ngClass]="message.sender">
+        <div [innerHTML]="message.text"></div>
+      </div>
+      <div *ngIf="loading" class="loading-indicator">
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" [(ngModel)]="userInput" placeholder="اكتب رسالتك..." (keyup.enter)="sendMessage()">
+      <button (click)="sendMessage()">إرسال</button>
+    </div>
+  </div>
